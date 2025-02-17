@@ -1,19 +1,23 @@
-# BEST
+# BEST OF BASIS magazine project
 
+## View/Search Page for All Magazines
+
+The view page for all of the magazines includes the following features:
+  ### Header:
+    - A search bar for searching
+    - About Us tag directs to info about the group
+    - Submission tag directs to a Subission page
+  ### Body:
+    - Search Results:
+      - A picture of the magazine cover embedded in the brief magazine box
+      - Clicking on the magazine cover directs to a new page containing the entire magazine content
+      - The color of the magazine cover lights up when the mouse floats over it
+## About Us Page:
+  ### Header:
+    - Recturn tag that returns you back to the View Page
+    - Submission tag directs to a Subission page
+  ### Body:
+    
 ## View Page for All Magazines:
   The view page for all of the magazines includes the following features:
-  ### header:
-    - 
-- A search bar at the top of the page
-- A navigation bar at the top of the page
-- A picture of the magazine cover embedded in the brief magazine box
-- Clicking on the magazine cover directs to a new page containing the entire magazine content
-- The color of the magazine cover changes when the mouse floats over it
-
-## Home Page
-
-The home page includes a header and an "About Us" section.
-
-## Submission Page
-
-The submission page allows users to submit magazines. It includes a form with input fields for the magazine title, series, and cover image, as well as a submit button.
+  ### header: 
