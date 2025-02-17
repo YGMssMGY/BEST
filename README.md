@@ -18,8 +18,6 @@ The view page for all of the magazines includes the following features:
     - Submission tag directs to a Subission page
   ### Body:
     
-The home page includes a header and an "About Us" section.
-
-## Submission Page
-
-The submission page allows users to submit magazines. It includes a form with input fields for the magazine title, series, and cover image, as well as a submit button.
+## View Page for All Magazines:
+  The view page for all of the magazines includes the following features:
+  ### header: 
