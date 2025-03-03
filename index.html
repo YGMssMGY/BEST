@@ -38,5 +38,18 @@
         </div>
         <!-- Add more magazine boxes as needed -->
     </main>
+    <script src="turn.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var magazine = document.querySelector(".magazine");
+            if (magazine) {
+                $(magazine).turn({
+                    width: 800,
+                    height: 600,
+                    autoCenter: true
+                });
+            }
+        });
+    </script>
 </body>
 </html>
