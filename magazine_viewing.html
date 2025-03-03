@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Pokemon Magazine</title>
-  </head>
-  <body>
-    <div class="flipbook">
-      <div class="hard">My Pokemon Gallery <small>~ HankTheTank</small></div>
-      <div class="hard"></div>
-      <div>
-        <small>Lets Look At Some Amazing Pokemon ❤️</small>
-        <small>Gotta Catch 'Em All</small>
-      </div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class="hard"></div>
-      <div class="hard">Thank You <small>~ HankTheTank</small></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine Viewing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="magazine">
+        <div class="page">Magazine 1 - Page 1</div>
+        <div class="page">Magazine 1 - Page 2</div>
+        <div class="page">Magazine 1 - Page 3</div>
+        <div class="page">Magazine 1 - Page 4</div>
+        <div class="page">Magazine 2 - Page 1</div>
+        <div class="page">Magazine 2 - Page 2</div>
+        <div class="page">Magazine 2 - Page 3</div>
+        <div class="page">Magazine 2 - Page 4</div>
     </div>
-  
-    <script src="jquery-3.7.1.js"></script>
     <script src="turn.js"></script>
     <script>
-      $(".flipbook").turn();
+        document.addEventListener("DOMContentLoaded", function() {
+            var magazine = document.querySelector(".magazine");
+            if (magazine) {
+                $(magazine).turn({
+                    width: 800,
+                    height: 600,
+                    autoCenter: true
+                });
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
