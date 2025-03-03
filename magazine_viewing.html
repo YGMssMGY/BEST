@@ -1,1 +1,34 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine Viewing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="magazine">
+        <div class="page">Magazine 1 - Page 1</div>
+        <div class="page">Magazine 1 - Page 2</div>
+        <div class="page">Magazine 1 - Page 3</div>
+        <div class="page">Magazine 1 - Page 4</div>
+        <div class="page">Magazine 2 - Page 1</div>
+        <div class="page">Magazine 2 - Page 2</div>
+        <div class="page">Magazine 2 - Page 3</div>
+        <div class="page">Magazine 2 - Page 4</div>
+    </div>
+    <script src="turn.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var magazine = document.querySelector(".magazine");
+            if (magazine) {
+                $(magazine).turn({
+                    width: 800,
+                    height: 600,
+                    autoCenter: true
+                });
+            }
+        });
+    </script>
+</body>
+</html>
