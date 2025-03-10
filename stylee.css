@@ -10,16 +10,12 @@
 body {
     display: grid;
     place-content: center;
-    height: 100vh;
-    width: 100vw;
+
 	overflow: hidden;
 	background: #f1c40f;
 }
 
-.flipbook {
-    width: 2482px;
-    height: 3544px;
-}
+
 
 .flipbook .hard {
     background: #c0392b !important;
