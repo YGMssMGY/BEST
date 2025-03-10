@@ -16,7 +16,10 @@ body {
 }
 
 
-
+.flipbook {
+    width: 2482px;
+    height: 3544px;
+}
 .flipbook .hard {
     background: #c0392b !important;
     color: #fff;
