@@ -9,7 +9,7 @@ const port = 3000;
 app.use(express.static(__dirname));
 
 app.get("/pdf-to-img",async(req,res)=>{
-    const pdfPath = path.join(__dirname,"test.pdf");
+    const pdfPath = path.join(__dirname,"BEST Magazine Mockup.pdf");
     const imagesDir = "./images";
     fs.readdir(imagesDir,(err,files)=>{
         if(err) throw err;
