@@ -1,37 +1,48 @@
-const express = require("express");
-const {pdf} = require("pdf-to-img");
-const fs = require("fs");
-const path = require ("path");
-const app = express();
-const port = 3000;
+const express=require("express");
+const {fromPath}=require("pdf2pic");
+const fs=require("fs");
+const path=require("path");
+const app=express();
+const port=2047;
+const imagesDir=path.join(__dirname, "images");
+const pdfPath=path.join(__dirname, "BEST Magazine Mockup.pdf");
+if (!fs.existsSync(imagesDir)){
+    fs.mkdirSync(imagesDir);
+}
 app.use(express.static(__dirname));
-app.get("/pdf-to-img",async(req,res)=>{
-    const pdfPath = path.join(__dirname,"BEST Magazine Mockup.pdf");
-    const imagesDir = "./images";
-    fs.readdir(imagesDir,(err,files)=>{
-        if(err) throw err;
-        for (const file of files) {
-            fs.unlink(path.join(imagesDir,file),err =>{
-                if(err) throw err;
+app.get("/pdf-to-img", async (req, res)=>{
+    fs.readdir(imagesDir, (err, files)=>{
+        if (err) console.error("Error reading images directory:", err);
+        files.forEach(file=>{
+            fs.unlink(path.join(imagesDir, file), err=>{
+                if (err) console.error("Error deleting file:", err);
             });
-        }
-    }) ;
+        });
+    });
     res.setHeader("Content-Type", "text/event-stream");
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
-
-    let pageNumber = 1;
-    for await(const page of await pdf(pdfPath)) {
-        fs.writeFileSync(`./images/page${pageNumber}.png`,page);
-        res.write(`event: generatedpages\ndata: ${pageNumber}\n\n`);
-        pageNumber++;
+    try{
+        const converter=fromPath(pdfPath,{
+            density: 300,
+            savePath: imagesDir,
+            format: "png",
+            width: 800
+        });
+        const totalPages=await converter.info().then(info=> info.pages);
+        for (let i=1; i <= totalPages; i++){
+            await converter.bulk(-1);
+            res.write(`event: generatedpages\ndata: ${i}\n\n`);
+        }
+        res.write(`event: totalpages\ndata: ${totalPages}\n\n`);
     }
-    res.write(`event: totalpages\ndata: ${pageNumber}\n\n`);
+    catch (error){
+        console.error("PDF Processing Error:", error);
+        res.write(`event: error\ndata: ${error.message}\n\n`);
+    }
     res.end();
 });
-
-app.use(`/images`,express.static(path.join(__dirname,"images")));
-
-app.listen(port,()=>{
+app.use("/images", express.static(imagesDir));
+app.listen(port, ()=>{
     console.log(`Server is running at http://localhost:${port}`);
 });
