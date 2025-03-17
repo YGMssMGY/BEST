@@ -1,0 +1,13 @@
+{
+  "name": "best",
+  "version": "1.0.0",
+  "description": "The view page for all of the magazines includes the following features:\r   ### Header:\r     - A search bar for searching\r     - About Us tag directs to info about the group\r     - Submission tag directs to a Subission page\r   ### Body:\r     - Search Results:\r       - A picture of the magazine cover embedded in the brief magazine box\r       - Clicking on the magazine cover directs to `magazine_viewing.html` containing the entire magazine content with a flipping function for the PDF\r       - The color of the magazine cover lights up when the mouse floats over it\r ## About Us Page:\r   ### Header:\r     - Recturn tag that returns you back to the View Page\r     - Submission tag directs to a Subission page\r   ### Body:",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
