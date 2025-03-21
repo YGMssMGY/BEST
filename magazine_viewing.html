@@ -1,56 +1,73 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script type="text/javascript" src="turn.min.js"></script>
 		<style type="text/css">
 			body{
-				background:#ccc;
+				background:#CCC;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				margin: 0;
+				overflow: hidden;
 			}
 			#magazine{
-				width: 80vw;
-				height: 95vh;
-				margin: auto;
+				width: 100%;
+				height: 100%;
 				text-align: center;
+				margin: auto;
+			}
+			#magazine-continer{
+				position: relative;
+				width: 90vw;
+				height: 90vh;
+				max-width: 800px;
 			}
 			#magazine .turn-page{
-				background-color:#F0F0F0;
+				background-color:#CCC;
 				background-size:100% 100%;
 			}
 		</style>
 	</head>
 	<body>
-		<div id="magazine">
-			<div style="background-image:url(pages/01.jpg);"></div>
-			<div style="background-image:url(pages/02.jpg);"></div>
-			<div style="background-image:url(pages/03.jpg);"></div>
-			<div style="background-image:url(pages/04.jpg);"></div>
-			<div style="background-image:url(pages/05.jpg);"></div>
-			<div style="background-image:url(pages/06.jpg);"></div>
-			<div style="background-image:url(pages/07.jpg);"></div>
-			<div style="background-image:url(pages/08.jpg);"></div>
-			<div style="background-image:url(pages/09.jpg);"></div>
-			<div style="background-image:url(pages/10.jpg);"></div>
-			<div style="background-image:url(pages/11.jpg);"></div>
-			<div style="background-image:url(pages/12.jpg);"></div>
-			<div style="background-image:url(pages/13.jpg);"></div>
-			<div style="background-image:url(pages/14.jpg);"></div>
-			<div style="background-image:url(pages/15.jpg);"></div>
-			<div style="background-image:url(pages/16.jpg);"></div>
-			<div style="background-image:url(pages/17.jpg);"></div>
-			<div style="background-image:url(pages/18.jpg);"></div>
-			<div style="background-image:url(pages/19.jpg);"></div>
-			<div style="background-image:url(pages/20.jpg);"></div>
-			<div style="background-image:url(pages/21.jpg);"></div>
-			<div style="background-image:url(pages/22.jpg);"></div>
-			<div style="background-image:url(pages/23.jpg);"></div>
-			<div style="background-image:url(pages/24.jpg);"></div>
-			<div style="background-image:url(pages/25.jpg);"></div>
-			<div style="background-image:url(pages/27.jpg);"></div>
-			<div style="background-image:url(pages/28.jpg);"></div>
-			<div style="background-image:url(pages/29.jpg);"></div>
-			<div style="background-image:url(pages/30.jpg);"></div>
-			<div style="background-image:url(pages/31.jpg);"></div>
+		<div id="mag-containter">
+			<div id="magazine">
+				<div style="background-image:url(pages/01.jpg);"></div>
+				<div style="background-image:url(pages/02.jpg);"></div>
+				<div style="background-image:url(pages/03.jpg);"></div>
+				<div style="background-image:url(pages/04.jpg);"></div>
+				<div style="background-image:url(pages/05.jpg);"></div>
+				<div style="background-image:url(pages/06.jpg);"></div>
+				<div style="background-image:url(pages/07.jpg);"></div>
+				<div style="background-image:url(pages/08.jpg);"></div>
+				<div style="background-image:url(pages/09.jpg);"></div>
+				<div style="background-image:url(pages/10.jpg);"></div>
+				<div style="background-image:url(pages/11.jpg);"></div>
+				<div style="background-image:url(pages/12.jpg);"></div>
+				<div style="background-image:url(pages/13.jpg);"></div>
+				<div style="background-image:url(pages/14.jpg);"></div>
+				<div style="background-image:url(pages/15.jpg);"></div>
+				<div style="background-image:url(pages/16.jpg);"></div>
+				<div style="background-image:url(pages/17.jpg);"></div>
+				<div style="background-image:url(pages/18.jpg);"></div>
+				<div style="background-image:url(pages/19.jpg);"></div>
+				<div style="background-image:url(pages/20.jpg);"></div>
+				<div style="background-image:url(pages/21.jpg);"></div>
+				<div style="background-image:url(pages/22.jpg);"></div>
+				<div style="background-image:url(pages/23.jpg);"></div>
+				<div style="background-image:url(pages/24.jpg);"></div>
+				<div style="background-image:url(pages/25.jpg);"></div>
+				<div style="background-image:url(pages/27.jpg);"></div>
+				<div style="background-image:url(pages/28.jpg);"></div>
+				<div style="background-image:url(pages/29.jpg);"></div>
+				<div style="background-image:url(pages/30.jpg);"></div>
+				<div style="background-image:url(pages/31.jpg);"></div>
+			</div>
 		</div>
 		<script type="text/javascript">
 			$(window).ready(function() {
