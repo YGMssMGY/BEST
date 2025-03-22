@@ -66,12 +66,13 @@
 				z-index: 100;
 			}
 			.loader{
-				border: .7rem solid #F3F3F3;
-				border-radius: .50rem;
+				border: .7rem solid #F0F0F0;
+				border-radius: 50%;
 				border-top: .7rem solid #3255A4;
 				width: 4.16667rem;
 				height: 4.16667rem;
-				animation: spin 1s linear infinite;
+				animation: spin3D 1.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+				transform-style: preserve-3d;
 			}
 			@keyframes spin{
 				0%{
@@ -82,6 +83,17 @@
 				}
 				100%{
 					transform: rotate(360deg);
+				}
+			}
+			@keyframes spin3D{
+				0%{
+					transform: rotateX(0deg) rotateY(0deg);
+				}
+				50%{
+					transform: rotateX(180deg) rotateY(180deg);
+				}
+				100%{
+					transform: rotateX(360deg) rotateY(360deg);
 				}
 			}
 			@media (max-width: 768px){
