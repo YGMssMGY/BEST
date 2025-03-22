@@ -119,32 +119,31 @@
 			// 	else if (e.keyCode==39)
 			// 		$('#magazine').turn('next');
 			// });
-			$(document).ready(function () {
-            function updateDisplayMode() {
-                let displayMode = $(window).width() < 768 ? "single" : "double";
+			$(document).ready(function (){
+            function updateDisplayMode(){
+                let displayMode=$(window).width()<768?"single":"double";
                 $('#magazine').turn("display", displayMode);
             }
-
             $('#magazine').turn({
-                display: $(window).width() < 768 ? "single" : "double",
+                display: $(window).width()<768?"single":"double",
                 acceleration: true,
                 gradients: !$.isTouch,
                 elevation: 50
             });
-
-            $("#prevBtn").click(function () {
+            $("#prevBtn").click(function (){
                 $("#magazine").turn("previous");
             });
-
-            $("#nextBtn").click(function () {
+            $("#nextBtn").click(function (){
                 $("#magazine").turn("next");
             });
-
-            $(window).bind("keydown", function (e) {
-                if (e.keyCode === 37) $("#magazine").turn("previous");
-                else if (e.keyCode === 39) $("#magazine").turn("next");
+            $(window).bind("keydown", function (e){
+                if (e.keyCode==37){
+					$("#magazine").turn("previous");
+				}
+                else if (e.keyCode==39){
+					$("#magazine").turn("next");
+				}
             });
-
             $(window).on("resize", updateDisplayMode);
         });
 		</script>
