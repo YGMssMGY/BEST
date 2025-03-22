@@ -72,26 +72,18 @@
 				width: 4.16667rem;
 				height: 4.16667rem;
 				position: relative;
-				animation: spin 1s linear infinite, flip 2s ease-in-out infinite;
+				animation: spin 2s linear infinite;
 				transform-style: preserve-3d;
 			}
 			@keyframes spin{
 				0%{
-					transform: rotate(0deg);
-				}
-				100%{
-					transform: rotate(360deg);
-				}
-			}
-			@keyframes flip{
-				0%{
-					transform: rotateY(0deg);
+					transform: rotate(0deg) rotateY(0deg);
 				}
 				50%{
-					transform: rotateY(180deg);
+					transform: rotate(180deg) rotateY(180deg);
 				}
 				100%{
-					transform: rotateY(0deg);
+					transform: rotate(360deg) rotateY(0deg);
 				}
 			}
 			@media (max-width: 768px){
