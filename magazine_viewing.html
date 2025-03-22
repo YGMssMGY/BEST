@@ -112,32 +112,32 @@
 		</div>
 		<script type="text/javascript">
 			$(document).ready(function (){
-            function updateDisplayMode(){
-                let displayMode=$(window).width()<768?"single":"double";
-                $('#magazine').turn("display", displayMode);
-            }
-            $('#magazine').turn({
-                display: $(window).width()<768?"single":"double",
-                acceleration: true,
-                gradients: !$.isTouch,
-                elevation: 50
-            });
-            $("#prevBtn").click(function (){
-                $("#magazine").turn("previous");
-            });
-            $("#nextBtn").click(function (){
-                $("#magazine").turn("next");
-            });
-            $(window).bind("keydown", function (e){
-                if (e.keyCode==37){
+				function updateDisplayMode(){
+					let displayMode=$(window).width()<768?"single":"double";
+					$('#magazine').turn("display", displayMode);
+				}
+				$('#magazine').turn({
+					display: $(window).width()<768?"single":"double",
+					acceleration: true,
+					gradients: !$.isTouch,
+					elevation: 50
+				});
+				$("#prevBtn").click(function (){
 					$("#magazine").turn("previous");
-				}
-                else if (e.keyCode==39){
+				});
+				$("#nextBtn").click(function (){
 					$("#magazine").turn("next");
-				}
-            });
-            $(window).on("resize", updateDisplayMode);
-        });
+				});
+				$(window).bind("keydown", function (e){
+					if (e.keyCode==37){
+						$("#magazine").turn("previous");
+					}
+					else if (e.keyCode==39){
+						$("#magazine").turn("next");
+					}
+				});
+				$(window).on("resize", updateDisplayMode);
+        	});
 		</script>
 	</body>
 </html>
