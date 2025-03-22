@@ -111,14 +111,6 @@
 			<button id="nextBtn" class="nav-btn">❯</button>
 		</div>
 		<script type="text/javascript">
-			// $(window).ready(function(){
-			// 	$('#magazine').turn({display: 'double',acceleration: true,gradients: !$.isTouch,elevation:50,when:{turned: function(e, page){/*console.log('Current view: ', $(this).turn('view'));*/}}});});
-			// $(window).bind('keydown', function(e){
-			// 	if (e.keyCode==37)
-			// 		$('#magazine').turn('previous');
-			// 	else if (e.keyCode==39)
-			// 		$('#magazine').turn('next');
-			// });
 			$(document).ready(function (){
             function updateDisplayMode(){
                 let displayMode=$(window).width()<768?"single":"double";
