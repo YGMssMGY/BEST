@@ -23,8 +23,8 @@
 			}
 			#mag-container{
 				position: relative;
-				width: 80vw;
-				height: 100vh;
+				width: 70vw;
+				height: 80vh;
 			}
 			#magazine .turn-page{
 				background-color:#CCC;
@@ -50,10 +50,10 @@
 				transform: translateY(-50%) scale(1.1);
 			}
 			#prevBtn{
-				left: -8rem;
+				left: -8.5rem;
 			}
 			#nextBtn{
-				right: -8rem;
+				right: -8.5rem;
 			}
 			@media (max-width: 768px){
 				#magazine-container{
@@ -111,14 +111,42 @@
 			<button id="nextBtn" class="nav-btn">❯</button>
 		</div>
 		<script type="text/javascript">
-			$(window).ready(function(){
-				$('#magazine').turn({display: 'double',acceleration: true,gradients: !$.isTouch,elevation:50,when:{turned: function(e, page){/*console.log('Current view: ', $(this).turn('view'));*/}}});});
-			$(window).bind('keydown', function(e){
-				if (e.keyCode==37)
-					$('#magazine').turn('previous');
-				else if (e.keyCode==39)
-					$('#magazine').turn('next');
-			});
+			// $(window).ready(function(){
+			// 	$('#magazine').turn({display: 'double',acceleration: true,gradients: !$.isTouch,elevation:50,when:{turned: function(e, page){/*console.log('Current view: ', $(this).turn('view'));*/}}});});
+			// $(window).bind('keydown', function(e){
+			// 	if (e.keyCode==37)
+			// 		$('#magazine').turn('previous');
+			// 	else if (e.keyCode==39)
+			// 		$('#magazine').turn('next');
+			// });
+			$(document).ready(function () {
+            function updateDisplayMode() {
+                let displayMode = $(window).width() < 768 ? "single" : "double";
+                $('#magazine').turn("display", displayMode);
+            }
+
+            $('#magazine').turn({
+                display: $(window).width() < 768 ? "single" : "double",
+                acceleration: true,
+                gradients: !$.isTouch,
+                elevation: 50
+            });
+
+            $("#prevBtn").click(function () {
+                $("#magazine").turn("previous");
+            });
+
+            $("#nextBtn").click(function () {
+                $("#magazine").turn("next");
+            });
+
+            $(window).bind("keydown", function (e) {
+                if (e.keyCode === 37) $("#magazine").turn("previous");
+                else if (e.keyCode === 39) $("#magazine").turn("next");
+            });
+
+            $(window).on("resize", updateDisplayMode);
+        });
 		</script>
 	</body>
 </html>
