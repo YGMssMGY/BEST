@@ -23,7 +23,7 @@
 			}
 			#mag-container{
 				position: relative;
-				width: 100vw;
+				width: 80vw;
 				height: 100vh;
 			}
 			#magazine .turn-page{
@@ -33,26 +33,27 @@
 			.nav-btn{
 				position: absolute;
 				top: 50%;
-				transform: translateY(-50%);
+				transform: translateY(-100%);
 				background-color: rgba(0, 0, 0, .5);
 				border: none;
 				color: #FFF;
-				padding: 1.2rem;
-				font-size: 2rem;
+				padding: 2rem;
+				font-size: 10rem;
 				cursor: pointer;
 				border-radius: .45rem;
 				z-index: 10;
 				transition: background 0.3s, transform 0.2s;
+				pointer-events: auto;
 			}
 			.nav-btn:hover{
 				background-color: #000;
 				transform: translateY(-50%) scale(1.1);
 			}
 			#prevBtn{
-				left: -1.3rem;
+				left: -9rem;
 			}
 			#nextBtn{
-				right: -1.3rem;
+				right: -9rem;
 			}
 			@media (max-width: 768px){
 				#magazine-container{
