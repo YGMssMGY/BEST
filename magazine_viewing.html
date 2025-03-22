@@ -14,7 +14,6 @@
 				justify-content: center;
 				height: 100vh;
 				margin: 0;
-				overflow: hidden;
 			}
 			#magazine{
 				width: 100%;
@@ -22,20 +21,60 @@
 				text-align: center;
 				margin: auto;
 			}
-			#magazine-continer{
+			#mag-container{
 				position: relative;
-				width: 90vw;
-				height: 90vh;
-				max-width: 800px;
+				width: 100vw;
+				height: 100vh;
 			}
 			#magazine .turn-page{
 				background-color:#CCC;
-				background-size:100% 100%;
+				background-size: 100% 100%;
 			}
+			.nav-btn{
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				background-color: rgba(0, 0, 0, .5);
+				border: none;
+				color: #FFF;
+				padding: 1.2rem;
+				font-size: 2rem;
+				cursor: pointer;
+				border-radius: .45rem;
+				z-index: 10;
+				transition: background 0.3s, transform 0.2s;
+			}
+			.nav-btn:hover{
+				background-color: #000;
+				transform: translateY(-50%) scale(1.1);
+			}
+			#prevBtn{
+				left: -1.3rem;
+			}
+			#nextBtn{
+				right: -1.3rem;
+			}
+			@media (max-width: 768px){
+				#magazine-container{
+					width: 90vw;
+					height: 80vh;
+				}
+				.nav-btn{
+					font-size: 1.5rem;
+					padding: 0.3rem;
+				}
+				#prevBtn{
+					left: -1.1rem;
+				}
+				#nextBtn{
+					right: -1.1rem;
+				}
+        	}
 		</style>
 	</head>
 	<body>
-		<div id="mag-containter">
+		<div id="mag-container">
+			<button id="prevBtn" class="nav-btn">❮</button>
 			<div id="magazine">
 				<div style="background-image:url(pages/01.jpg);"></div>
 				<div style="background-image:url(pages/02.jpg);"></div>
@@ -68,10 +107,11 @@
 				<div style="background-image:url(pages/30.jpg);"></div>
 				<div style="background-image:url(pages/31.jpg);"></div>
 			</div>
+			<button id="nextBtn" class="nav-btn">❯</button>
 		</div>
 		<script type="text/javascript">
-			$(window).ready(function() {
-				$('#magazine').turn({display: 'double',acceleration: true,gradients: !$.isTouch,elevation:50,when: {turned: function(e, page) {/*console.log('Current view: ', $(this).turn('view'));*/}}});});
+			$(window).ready(function(){
+				$('#magazine').turn({display: 'double',acceleration: true,gradients: !$.isTouch,elevation:50,when:{turned: function(e, page){/*console.log('Current view: ', $(this).turn('view'));*/}}});});
 			$(window).bind('keydown', function(e){
 				if (e.keyCode==37)
 					$('#magazine').turn('previous');
