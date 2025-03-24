@@ -19,12 +19,12 @@
 				width: 100%;
 				height: 100%;
 				text-align: center;
-				margin: auto;
+				margin: 0 auto;
 			}
 			#mag-container{
 				position: relative;
-				width: 70vw;
-				height: 80vh;
+				width: 80vw;
+				height: 90vh;
 			}
 			#magazine .turn-page{
 				background-color:#CCC;
@@ -37,8 +37,8 @@
 				background-color: rgba(0, 0, 0, .5);
 				border: none;
 				color: #FFF;
-				padding: 2rem;
-				font-size: 8rem;
+				padding: 1.5rem;
+				font-size: 5rem;
 				cursor: pointer;
 				border-radius: .45rem;
 				z-index: 10;
@@ -88,8 +88,8 @@
 			}
 			@media (max-width: 768px){
 				#magazine-container{
-					width: 90vw;
-					height: 80vh;
+					width: 100vw;
+					height: 60vh;
 				}
 				.nav-btn{
 					font-size: 1.5rem;
@@ -109,7 +109,8 @@
 			<div class="loader"></div>
 		</div>
 		<div id="mag-container">
-			<button id="prevBtn" class="nav-btn">❮</button>
+			<button 
+			id="prevBtn" class="nav-btn">❮</button>
 			<div id="magazine">
 				<div style="background-image:url(pages/01.jpg);"></div>
 				<div style="background-image:url(pages/02.jpg);"></div>
