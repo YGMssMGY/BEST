@@ -1,6 +1,12 @@
-
+@font-face {
+    font-family: "Noto Sans SC";
+    src: url("NotoSansSC-VariableFont_wght.ttf");
+}
+input, textarea{
+    font-family: "Noto Sans SC";
+}
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Noto Sans SC";
     margin: 0;
     padding: 0;
 }
