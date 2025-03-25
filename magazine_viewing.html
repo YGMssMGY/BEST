@@ -144,9 +144,22 @@
 				}
 			}
 			@media (hover: none){
-				.nav-btn:hover{
-					transform: translateY(-20%);
+				.nav-btn{
 					background-color: rgba(0, 0, 0, .5);
+				}
+				.nav-btn:hover{
+					transform: translateY(-5%);
+					background-color: rgba(0, 0, 0, .9);
+					animation: flipBack 0.5s forwards 0.5s;
+				}
+				@keyframes flipBack{
+					0%{
+						transform: translateY(-5%);
+					}
+					100%{
+						transform: translateY(0);
+						background-color: rgba(0, 0, 0, .5);
+					}
 				}
 			}
 		</style>
