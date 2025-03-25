@@ -6,6 +6,12 @@
 		<script src="jquery-3.7.1.js"></script>
 		<script type="text/javascript" src="turn.min.js"></script>
 		<style type="text/css">
+			:root{
+				--base-unit: 0.9rem;
+				--button-size: 3.5rem;
+				--container-width: 80vw;
+				--container-height: 90vh;
+			}
 			body{
 				background:#CCC;
 				display: flex;
@@ -14,6 +20,7 @@
 				justify-content: center;
 				height: 100vh;
 				margin: 0;
+				font-size: clamp(0.875rem, 2.5vw, 1rem);
 			}
 			#magazine{
 				width: 100%;
@@ -23,12 +30,13 @@
 			}
 			#mag-container{
 				position: relative;
-				width: 80vw;
-				height: 90vh;
+				width: var(--container-width);
+				height: var(--container-height);
 			}
 			#magazine .turn-page{
 				background-color:#CCC;
-				background-size: 100% 100%;
+				background-size: cover;
+				background-position: center;
 			}
 			.nav-btn{
 				position: absolute;
@@ -37,23 +45,28 @@
 				background-color: rgba(0, 0, 0, .5);
 				border: none;
 				color: #FFF;
-				padding: 1rem;
-				font-size: 2rem;
+				padding: clamp(0.5rem, 2vw, 1.5rem);
+				font-size: clamp(2rem, 6vw, 5rem);
 				cursor: pointer;
 				border-radius: .45rem;
 				z-index: 10;
 				transition: background 0.3s, transform 0.2s;
 				pointer-events: auto;
+				min-width: var(--button-size);
+				min-height: var(--button-size);
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 			.nav-btn:hover{
 				background-color: #000;
 				transform: translateY(-50%) scale(1.1);
 			}
 			#prevBtn{
-				left: -9rem;
+				left: calc(-1*var(--button-size));
 			}
 			#nextBtn{
-				right: -9rem;
+				right: calc(-1*var(--button-size));
 			}
 			#loading-screen{
 				display: flex;
@@ -78,7 +91,7 @@
 			}
 			.loading-text{
 				color: #3255A4;
-				font-size: 1.5rem;
+				font-size: clamp(1.2rem, 4vw, 1.5rem);
 				margin-top: 1.5rem;
 				letter-spacing: 0.12rem;
 			}
@@ -93,7 +106,7 @@
 					transform: rotate(360deg) rotateY(0deg);
 				}
 			}
-			@media (max-width: 768px){
+			/* @media (max-width: 768px){
 				#magazine-container{
 					width: 100vw;
 					height: 60vh;
@@ -108,7 +121,41 @@
 				#nextBtn{
 					right: -1.1rem;
 				}
-        	}
+        	} */
+			@media (max-width: 768px){
+				:root{
+					--base-unit: 0.8rem;
+					--button-size: 2.5rem;
+					--container-width: 95vw;
+					--container-height: 70vh;
+				}
+				.nav-btn{
+					position: fixed;
+					bottom: 1rem;
+					top: auto;
+					transform: none;
+					font-size: 2rem;
+					padding: 0.5rem;
+					min-width: 3rem;
+					min-height: 3rem;
+				}
+				#prevBtn{
+					left: 1rem;
+				}
+				#nextBtn{
+					right: 1rem;
+				}
+				#magazine .turn-page{
+					background-size: contain;
+					background-repeat: no-repeat;
+				}
+			}
+			@media (hover: none){
+				.nav-btn:hover{
+					transform: translateY(-50%);
+					background-color: rgba(0, 0, 0, .5);
+				}
+			}
 		</style>
 	</head>
 	<body>
