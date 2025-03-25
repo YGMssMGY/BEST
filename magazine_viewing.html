@@ -64,6 +64,7 @@
 				justify-content: center;
 				align-items: center;
 				z-index: 100;
+				flex-direction: column;
 			}
 			.loader{
 				border: .7rem solid #F0F0F0;
@@ -74,6 +75,12 @@
 				position: relative;
 				animation: spin 2s linear infinite;
 				transform-style: preserve-3d;
+			}
+			.loading-text{
+				color: #3255A4;
+				font-size: 1.5rem;
+				margin-top: 1.5rem;
+				letter-spacing: 0.12rem;
 			}
 			@keyframes spin{
 				0%{
