@@ -22,7 +22,6 @@ header{
     top: 0;
     width: 100%;
     z-index: 500;
-    border-radius: .5rem;
 }
 nav ul{
     list-style-type: none;
