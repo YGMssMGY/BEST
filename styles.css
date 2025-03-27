@@ -1,45 +1,40 @@
-@font-face {
+@font-face{
     font-family: "Noto Sans SC";
     src: url("NotoSansSC-VariableFont_wght.ttf");
 }
 input, textarea{
     font-family: "Noto Sans SC";
 }
-body {
+body{
     font-family: "Noto Sans SC";
     margin: 0;
     padding: 0;
 }
-
-header {
-    background-color: #333;
-    color: white;
+header{
+    background-color: #3255A4;
+    color: #F0F0F0;
     padding: 10px 0;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 500;
 }
-
-nav ul {
+nav ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
 }
-
-nav ul li {
+nav ul li{
     margin: 0 15px;
 }
-
-nav ul li a {
+nav ul li a{
     color: white;
     text-decoration: none;
     font-size: 18px;
 }
-
-#search-bar {
+#search-bar{
     display: block;
     margin: 10px auto;
     padding: 5px;
@@ -47,16 +42,14 @@ nav ul li a {
     max-width: 400px;
     font-size: 16px;
 }
-
-main {
+main{
     margin-top: 70px;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-
-.magazine-box {
+.magazine-box{
     border: 1px solid #ddd;
     border-radius: 5px;
     margin: 10px;
@@ -65,27 +58,22 @@ main {
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
 }
-
-.magazine-box:hover {
+.magazine-box:hover{
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-.magazine-box img {
+.magazine-box img{
     width: 100%;
     height: auto;
 }
-
-.magazine-info {
+.magazine-info{
     padding: 10px;
 }
-
-.magazine-info h2 {
+.magazine-info h2{
     font-size: 18px;
     margin: 10px 0 5px;
 }
-
-.magazine-info p {
+.magazine-info p{
     font-size: 14px;
     color: #555;
 }
