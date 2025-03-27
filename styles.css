@@ -70,6 +70,7 @@ main{
 }
 a{
     color: #3255A4;
+    text-decoration: none;
 }
 .magazine-box:hover{
     transform: scale(1.05);
