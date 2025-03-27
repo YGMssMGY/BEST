@@ -4,6 +4,9 @@
 }
 input, textarea{
     font-family: "Noto Sans SC";
+    border: 2px solid #000;
+    border-radius: .45rem;
+    padding: .2rem;
 }
 body{
     font-family: "Noto Sans SC";
@@ -37,7 +40,7 @@ nav ul li{
 nav ul li a{
     color: #FFF;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1rem;
     color: #3255A4;
 }
 #search-bar{
@@ -58,7 +61,7 @@ main{
 .magazine-box{
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin: 10px;
+    margin: 1.5rem;
     overflow: hidden;
     width: 200px;
     text-align: center;
