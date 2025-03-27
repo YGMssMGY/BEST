@@ -1,9 +1,10 @@
+require("dotenv").config({path: ".env.local"})
 const express=require("express");
 const {fromPath}=require("pdf2pic");
 const fs=require("fs");
 const path=require("path");
 const app=express();
-const port=80;
+const port=process.env.PORT_NUMBER;
 const imagesDir=path.join(__dirname, "images");
 const pdfPath=path.join(__dirname, "BEST Magazine Mockup.pdf");
 if (!fs.existsSync(imagesDir)){
