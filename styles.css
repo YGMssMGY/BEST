@@ -22,6 +22,7 @@ header{
     top: 0;
     width: 100%;
     z-index: 500;
+    border-radius: .5rem;
 }
 nav ul{
     list-style-type: none;
@@ -45,14 +46,14 @@ nav ul li a{
 }
 #search-bar{
     display: block;
-    margin: 10px auto;
+    margin: 5px auto;
     padding: 5px;
     width: 80%;
     max-width: 400px;
-    font-size: 16px;
+    font-size: 1rem;
 }
 main{
-    margin-top: 70px;
+    margin-top: 8rem;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -89,4 +90,13 @@ a{
 }
 .magazine-info p{
     font-size: 14px;
+}
+#bestofbasis{
+    font-family: "Noto Sans SC";
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: oblique;
+    margin-bottom: 1rem;
 }
