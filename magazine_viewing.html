@@ -3,15 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="jquery-3.7.1.js"></script>
-		<script type="text/javascript" src="turn.min.js"></script>
+		<script src="jquery-3.7.1.js" defer></script>
+		<script src="turn.min.js" defer></script>
 		<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-		<style type="text/css">
+		<link rel="preload" href="NotoSansSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
+		<style>
 			@font-face{
-                font-family: "Noto Sans SC";
-                src: url("NotoSansSC-VariableFont_wght.ttf");
-            }
-			input, textarea{
+				font-family: "Noto Sans SC";
+				src: url("NotoSansSC-VariableFont_wght.ttf");
+			}
+			input,textarea{
 				font-family: "Noto Sans SC";
 			}
 			:root{
@@ -22,7 +23,7 @@
 			}
 			body{
 				font-family: "Noto Sans SC";
-				background:#CCC;
+				background: #CCC;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -43,7 +44,7 @@
 				height: var(--container-height);
 			}
 			#magazine .turn-page{
-				background-color:#CCC;
+				background-color: #CCC;
 				background-size: cover;
 				background-position: center;
 			}
@@ -51,13 +52,13 @@
 				position: absolute;
 				top: 50%;
 				transform: translateY(-50%);
-				background-color: rgba(0, 0, 0, .5);
+				background-color: rgba(0, 0, 0, 0.5);
 				border: none;
 				color: #FFF;
 				padding: clamp(0.5rem, 2vw, 1.5rem);
 				font-size: clamp(2rem, 6vw, 5rem);
 				cursor: pointer;
-				border-radius: .45rem;
+				border-radius: 0.45rem;
 				z-index: 10;
 				transition: background 0.3s, transform 0.2s;
 				pointer-events: auto;
@@ -72,10 +73,10 @@
 				transform: translateY(-50%) scale(1.1);
 			}
 			#prevBtn{
-				left: calc(-1*var(--button-size));
+				left: calc(-1 * var(--button-size));
 			}
 			#nextBtn{
-				right: calc(-1*var(--button-size));
+				right: calc(-1 * var(--button-size));
 			}
 			#loading-screen{
 				display: flex;
@@ -89,14 +90,12 @@
 				flex-direction: column;
 			}
 			.loader{
-				border: .7rem solid #F0F0F0;
+				border: 0.7rem solid #F0F0F0;
 				border-radius: 50%;
-				border-top: .7rem solid #3255A4;
+				border-top: 0.7rem solid #3255A4;
 				width: 4.16667rem;
 				height: 4.16667rem;
-				position: relative;
 				animation: spin 2s linear infinite;
-				transform-style: preserve-3d;
 			}
 			.loading-text{
 				color: #3255A4;
@@ -146,11 +145,11 @@
 			}
 			@media (hover: none){
 				.nav-btn{
-					background-color: rgba(0, 0, 0, .5);
+					background-color: rgba(0, 0, 0, 0.5);
 				}
 				.nav-btn:hover{
 					transform: translateY(-5%);
-					background-color: rgba(0, 0, 0, .9);
+					background-color: rgba(0, 0, 0, 0.9);
 					animation: flipBack 0.5s forwards 0.5s;
 				}
 				@keyframes flipBack{
@@ -159,7 +158,7 @@
 					}
 					100%{
 						transform: translateY(0);
-						background-color: rgba(0, 0, 0, .5);
+						background-color: rgba(0, 0, 0, 0.5);
 					}
 				}
 			}
@@ -171,50 +170,54 @@
 			<div class="loading-text">Loading Wonder!</div>
 		</div>
 		<div id="mag-container">
-			<button 
-			id="prevBtn" class="nav-btn">❮</button>
+			<button id="prevBtn" class="nav-btn">❮</button>
 			<div id="magazine">
-				<div style="background-image:url(pages/01.jpg);"></div>
-				<div style="background-image:url(pages/02.jpg);"></div>
-				<div style="background-image:url(pages/03.jpg);"></div>
-				<div style="background-image:url(pages/04.jpg);"></div>
-				<div style="background-image:url(pages/05.jpg);"></div>
-				<div style="background-image:url(pages/06.jpg);"></div>
-				<div style="background-image:url(pages/07.jpg);"></div>
-				<div style="background-image:url(pages/08.jpg);"></div>
-				<div style="background-image:url(pages/09.jpg);"></div>
-				<div style="background-image:url(pages/10.jpg);"></div>
-				<div style="background-image:url(pages/11.jpg);"></div>
-				<div style="background-image:url(pages/12.jpg);"></div>
-				<div style="background-image:url(pages/13.jpg);"></div>
-				<div style="background-image:url(pages/14.jpg);"></div>
-				<div style="background-image:url(pages/15.jpg);"></div>
-				<div style="background-image:url(pages/16.jpg);"></div>
-				<div style="background-image:url(pages/17.jpg);"></div>
-				<div style="background-image:url(pages/18.jpg);"></div>
-				<div style="background-image:url(pages/19.jpg);"></div>
-				<div style="background-image:url(pages/20.jpg);"></div>
-				<div style="background-image:url(pages/21.jpg);"></div>
-				<div style="background-image:url(pages/22.jpg);"></div>
-				<div style="background-image:url(pages/23.jpg);"></div>
-				<div style="background-image:url(pages/24.jpg);"></div>
-				<div style="background-image:url(pages/25.jpg);"></div>
-				<div style="background-image:url(pages/27.jpg);"></div>
-				<div style="background-image:url(pages/28.jpg);"></div>
-				<div style="background-image:url(pages/29.jpg);"></div>
-				<div style="background-image:url(pages/30.jpg);"></div>
-				<div style="background-image:url(pages/31.jpg);"></div>
+				<div data-bg="pages/01.jpg"></div>
+				<div data-bg="pages/02.jpg"></div>
+				<div data-bg="pages/03.jpg"></div>
+				<div data-bg="pages/04.jpg"></div>
+				<div data-bg="pages/05.jpg"></div>
+				<div data-bg="pages/06.jpg"></div>
+				<div data-bg="pages/07.jpg"></div>
+				<div data-bg="pages/08.jpg"></div>
+				<div data-bg="pages/09.jpg"></div>
+				<div data-bg="pages/10.jpg"></div>
+				<div data-bg="pages/11.jpg"></div>
+				<div data-bg="pages/12.jpg"></div>
+				<div data-bg="pages/13.jpg"></div>
+				<div data-bg="pages/14.jpg"></div>
+				<div data-bg="pages/15.jpg"></div>
+				<div data-bg="pages/16.jpg"></div>
+				<div data-bg="pages/17.jpg"></div>
+				<div data-bg="pages/18.jpg"></div>
+				<div data-bg="pages/19.jpg"></div>
+				<div data-bg="pages/20.jpg"></div>
+				<div data-bg="pages/21.jpg"></div>
+				<div data-bg="pages/22.jpg"></div>
+				<div data-bg="pages/23.jpg"></div>
+				<div data-bg="pages/24.jpg"></div>
+				<div data-bg="pages/25.jpg"></div>
+				<div data-bg="pages/27.jpg"></div>
+				<div data-bg="pages/28.jpg"></div>
+				<div data-bg="pages/29.jpg"></div>
+				<div data-bg="pages/30.jpg"></div>
+				<div data-bg="pages/31.jpg"></div>
 			</div>
 			<button id="nextBtn" class="nav-btn">❯</button>
 		</div>
-		<script type="text/javascript">
-			$(document).ready(function (){
+		<script defer>
+			document.addEventListener("DOMContentLoaded", function (){
+				$("#magazine div").each(function (){
+					const bg=$(this).data("bg");
+					$(this).css("background-image", "url(" + bg + ")");
+				});
 				let images=$("#magazine div").length;
 				let loaded=0;
 				$("#magazine div").each(function (){
-					let bgImage=new Image();
-					bgImage.src=$(this).css("background-image").replace(/url\(["']?(.*?)["']?\)/, '$1');
-					bgImage.onload=function (){
+					const bg=$(this).css("background-image").replace(/url\(["']?(.*?)["']?\)/, '$1');
+					const img=new Image();
+					img.src=bg;
+					img.onload=function (){
 						loaded++;
 						if (loaded==images){
 							$("#loading-screen").fadeOut();
@@ -223,9 +226,9 @@
 				});
 				function updateDisplayMode(){
 					let displayMode=$(window).width()<768?"single":"double";
-					$('#magazine').turn("display", displayMode);
+					$("#magazine").turn("display", displayMode);
 				}
-				$('#magazine').turn({
+				$("#magazine").turn({
 					display: $(window).width()<768?"single":"double",
 					acceleration: true,
 					gradients: !$.isTouch,
@@ -237,20 +240,21 @@
 				$("#nextBtn").click(function (){
 					$("#magazine").turn("next");
 				});
-				$(window).bind("keydown", function (e){
+				$(window).on("keydown", function (e){
 					if (e.keyCode==37){
 						$("#magazine").turn("previous");
-					} else if (e.keyCode==39){
+					}
+					else if (e.keyCode==39){
 						$("#magazine").turn("next");
 					}
 				});
 				$(window).on("resize", updateDisplayMode);
 				let startX, endX;
 				$("#magazine").on("touchstart", function (e){
-					startX=e.touches[0].clientX;
+					startX=e.originalEvent.touches[0].clientX;
 				});
 				$("#magazine").on("touchmove", function (e){
-					endX=e.touches[0].clientX;
+					endX=e.originalEvent.touches[0].clientX;
 				});
 				$("#magazine").on("touchend", function (){
 					let threshold=50;

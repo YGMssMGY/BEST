@@ -1,6 +1,6 @@
-require("dotenv").config({path: ".env.local"})
+require("dotenv").config({ path: ".env.local" });
 const express=require("express");
-const {fromPath}=require("pdf2pic");
+const{ fromPath }=require("pdf2pic");
 const fs=require("fs");
 const path=require("path");
 const app=express();
@@ -24,14 +24,14 @@ app.get("/pdf-to-img", async (req, res)=>{
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Connection", "keep-alive");
     try{
-        const converter=fromPath(pdfPath,{
+        const converter=fromPath(pdfPath, {
             density: 300,
             savePath: imagesDir,
             format: "png",
             width: 800
         });
-        const totalPages=await converter.info().then(info=> info.pages);
-        for (let i=1; i <= totalPages; i++){
+        const totalPages=await converter.info().then(info=>info.pages);
+        for (let i=1; i<=totalPages; i++){
             await converter.bulk(-1);
             res.write(`event: generatedpages\ndata: ${i}\n\n`);
         }
