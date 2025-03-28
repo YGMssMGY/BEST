@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="turn.min.js"></script>
 		<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 		<style type="text/css">
-			@font-face {
+			@font-face{
                 font-family: "Noto Sans SC";
                 src: url("NotoSansSC-VariableFont_wght.ttf");
             }
@@ -240,12 +240,27 @@
 				$(window).bind("keydown", function (e){
 					if (e.keyCode==37){
 						$("#magazine").turn("previous");
-					}
-					else if (e.keyCode==39){
+					} else if (e.keyCode==39){
 						$("#magazine").turn("next");
 					}
 				});
 				$(window).on("resize", updateDisplayMode);
+				let startX, endX;
+				$("#magazine").on("touchstart", function (e){
+					startX=e.touches[0].clientX;
+				});
+				$("#magazine").on("touchmove", function (e){
+					endX=e.touches[0].clientX;
+				});
+				$("#magazine").on("touchend", function (){
+					let threshold=50;
+					if (startX-endX>threshold){
+						$("#magazine").turn("next");
+					}
+					else if (endX-startX>threshold){
+						$("#magazine").turn("previous");
+					}
+				});
 			});
 		</script>
 	</body>
