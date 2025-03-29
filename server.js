@@ -1,16 +1,19 @@
 require("dotenv").config({ path: ".env.local" });
 const express=require("express");
-const{ fromPath }=require("pdf2pic");
+const {fromPath}=require("pdf2pic");
 const fs=require("fs");
 const path=require("path");
 const app=express();
 const port=process.env.PORT_NUMBER;
 const imagesDir=path.join(__dirname, "images");
-const pdfPath=path.join(__dirname, "BEST Magazine Mockup.pdf");
+const pdfPath=path.join(__dirname, "BEST_Magazine_Mockup.pdf");
 if (!fs.existsSync(imagesDir)){
     fs.mkdirSync(imagesDir);
 }
 app.use(express.static(__dirname));
+app.get("/pdf", (req, res)=>{
+    res.sendFile(pdfPath);
+});
 app.get("/pdf-to-img", async (req, res)=>{
     fs.readdir(imagesDir, (err, files)=>{
         if (err) console.error("Error reading images directory:", err);
