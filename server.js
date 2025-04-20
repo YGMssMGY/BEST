@@ -57,7 +57,7 @@ fastify.get("/pdf-to-img", async (request, reply)=>{
 });
 async function start(){
     await ensureImagesDir();
-    await fastify.listen({ port });
+    await fastify.listen({ port, host: "0.0.0.0"});
     console.log(`Server running on http://localhost:${port}`);
 }
 start().catch(err=>{
