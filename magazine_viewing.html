@@ -113,7 +113,7 @@
 				margin: .825rem 0;
 				color: #3255A4;
 			}
-			#progress-label, #loading-log, #ip-label{
+			#progress-label, #loading-log, #ipv4-label, #ipv6-label{
 				font-size: 1.2rem;
 				color: #3255A4;
 			}
@@ -185,7 +185,8 @@
 			<progress id="progress-bar" value="0" max="100"></progress>
 			<p id="progress-label">0%</p>
 			<p id="loading-log"></p>
-			<p id="ip-label"></p>
+			<p id="ipv4-label"></p>
+			<p id="ipv6-label"></p>
 		</div>
 		<div id="mag-container">
 			<button id="prevBtn" class="nav-btn">❮</button>
@@ -232,14 +233,24 @@
 				});
 				let images=$("#magazine div").length;
 				let loaded=0;
-				fetch("https://api.ipify.org?format=json")
-					.then(response=>response.json())
+				fetch ("https://ipv4.icanhazip.com")
+					.then(response=>response.text())
 					.then(data=>{
-						$("#ip-label").text("Your IP: "+data.ip);
+						let ipv4=data.trim();
+						$("#ipv4-label").text(`IPv4: ${ipv4}`);
 					})
 					.catch(()=>{
-						$("#ip-label").text("Your IP: Unable to fetch");
-					});
+						$("#ipv4-label").text(`IPv4: Not available`);
+					})
+				fetch ("https://ipv6.icanhazip.com")
+					.then(response=>response.text())
+					.then(data=>{
+						let ipv6=data.trim();
+						$("#ipv6-label").text(`IPv6: ${ipv4}`);
+					})
+					.catch(()=>{
+						$("#ipv6-label").text(`IPv6: Not available`);
+					})
 				$("#magazine div").each(function (){
 					const bg=$(this).data("bg");
 					const img=new Image();
