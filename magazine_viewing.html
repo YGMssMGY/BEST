@@ -246,7 +246,7 @@
 					.then(response=>response.text())
 					.then(data=>{
 						let ipv6=data.trim();
-						$("#ipv6-label").text(`IPv6: ${ipv4}`);
+						$("#ipv6-label").text(`IPv6: ${ipv6}`);
 					})
 					.catch(()=>{
 						$("#ipv6-label").text(`IPv6: Not available`);
