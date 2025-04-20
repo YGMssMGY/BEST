@@ -113,7 +113,7 @@
 				margin: .825rem 0;
 				color: #3255A4;
 			}
-			#progress-label, #loading-log{
+			#progress-label, #loading-log, #ip-label{
 				font-size: 1.2rem;
 				color: #3255A4;
 			}
@@ -185,6 +185,7 @@
 			<progress id="progress-bar" value="0" max="100"></progress>
 			<p id="progress-label">0%</p>
 			<p id="loading-log"></p>
+			<p id="ip-label"></p>
 		</div>
 		<div id="mag-container">
 			<button id="prevBtn" class="nav-btn">❮</button>
@@ -231,6 +232,14 @@
 				});
 				let images=$("#magazine div").length;
 				let loaded=0;
+				fetch("https://api.ipify.org?format=json")
+					.then(response=>response.json())
+					.then(data=>{
+						$("#ip-label").text("Your IP: "+data.ip);
+					})
+					.catch(()=>{
+						$("#ip-label").text("Your IP: Unable to fetch");
+					});
 				$("#magazine div").each(function (){
 					const bg=$(this).data("bg");
 					const img=new Image();
