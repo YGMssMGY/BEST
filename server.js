@@ -1,52 +1,66 @@
 require("dotenv").config({ path: ".env.local" });
-const express=require("express");
-const {fromPath}=require("pdf2pic");
-const fs=require("fs");
-const path=require("path");
-const app=express();
-const port=process.env.PORT_NUMBER;
-const imagesDir=path.join(__dirname, "images");
-const pdfPath=path.join(__dirname, "BEST_Magazine_Mockup.pdf");
-if (!fs.existsSync(imagesDir)){
-    fs.mkdirSync(imagesDir);
-}
-app.use(express.static(__dirname));
-app.get("/pdf", (req, res)=>{
-    res.sendFile(pdfPath);
-});
-app.get("/pdf-to-img", async (req, res)=>{
-    fs.readdir(imagesDir, (err, files)=>{
-        if (err) console.error("Error reading images directory:", err);
-        files.forEach(file=>{
-            fs.unlink(path.join(imagesDir, file), err=>{
-                if (err) console.error("Error deleting file:", err);
-            });
-        });
-    });
-    res.setHeader("Content-Type", "text/event-stream");
-    res.setHeader("Cache-Control", "no-cache");
-    res.setHeader("Connection", "keep-alive");
+let fastify=require("fastify")({ logger: true });
+let { fromPath }=require("pdf2pic");
+let fs=require("fs/promises");
+let path=require("path");
+let port=process.env.PORT_NUMBER;
+let imagesDir=path.join(__dirname, "images");
+let pdfPath=path.join(__dirname, "BEST_Magazine_Mockup.pdf");
+async function ensureImagesDir(){
     try{
-        const converter=fromPath(pdfPath, {
+        await fs.access(imagesDir);
+    }
+    catch{
+        await fs.mkdir(imagesDir,{ recursive: true });
+    }
+}
+fastify.register(require("@fastify/static"),{
+    root: __dirname,
+    maxAge: 0
+});
+fastify.register(require("@fastify/static"),{
+    root: imagesDir,
+    prefix: "/images/",
+    decorateReply: false
+});
+fastify.get("/pdf", async (request, reply)=>{
+    reply.header("Content-Type", "application/pdf");
+    return reply.sendFile(pdfPath);
+});
+fastify.get("/pdf-to-img", async (request, reply)=>{
+    reply.raw.writeHead(200,{
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive"
+    });
+    try{
+        let files=await fs.readdir(imagesDir);
+        await Promise.all(files.map(file=> fs.unlink(path.join(imagesDir, file))));
+        let converter=fromPath(pdfPath,{
             density: 300,
             savePath: imagesDir,
             format: "png",
             width: 800
         });
-        const totalPages=await converter.info().then(info=>info.pages);
-        for (let i=1; i<=totalPages; i++){
-            await converter.bulk(-1);
-            res.write(`event: generatedpages\ndata: ${i}\n\n`);
-        }
-        res.write(`event: totalpages\ndata: ${totalPages}\n\n`);
+        let{ pages: totalPages }=await converter.info();
+        await converter.bulk(-1);
+        reply.raw.write(`event: totalpages\ndata: ${totalPages}\n\n`);
+        reply.raw.write(`event: generatedpages\ndata: ${totalPages}\n\n`);
     }
     catch (error){
         console.error("PDF Processing Error:", error);
-        res.write(`event: error\ndata: ${error.message}\n\n`);
+        reply.raw.write(`event: error\ndata: ${error.message}\n\n`);
     }
-    res.end();
+    finally{
+        reply.raw.end();
+    }
 });
-app.use("/images", express.static(imagesDir));
-app.listen(port, ()=>{
-    console.log(`Server is running at http://localhost:${port}`);
+async function start(){
+    await ensureImagesDir();
+    await fastify.listen({ port });
+    console.log(`Server running on http://localhost:${port}`);
+}
+start().catch(err=>{
+    console.error("Server startup error:", err);
+    process.exit(1);
 });
