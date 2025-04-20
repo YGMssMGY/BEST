@@ -108,6 +108,15 @@
 				margin-top: 1.5rem;
 				letter-spacing: 0.12rem;
 			}
+			#progress-bar{
+				width: 80%;
+				margin: .825rem 0;
+				color: #3255A4;
+			}
+			#progress-label, #loading-log{
+				font-size: 1.2rem;
+				color: #3255A4;
+			}
 			@keyframes spin{
 				0%{
 					transform: rotate(0deg) rotateY(0deg);
@@ -172,7 +181,10 @@
 	<body>
 		<div id="loading-screen">
 			<div class="loader"></div>
-			<div class="loading-text">Loading Wonder!</div>
+			<div class="loading-text">Loading...</div>
+			<progress id="progress-bar" value="0" max="100"></progress>
+			<p id="progress-label">0%</p>
+			<p id="loading-log"></p>
 		</div>
 		<div id="mag-container">
 			<button id="prevBtn" class="nav-btn">❮</button>
@@ -215,16 +227,20 @@
 			document.addEventListener("DOMContentLoaded", function (){
 				$("#magazine div").each(function (){
 					const bg=$(this).data("bg");
-					$(this).css("background-image", "url(" + bg + ")");
+					$(this).css("background-image", "url("+bg+")");
 				});
 				let images=$("#magazine div").length;
 				let loaded=0;
 				$("#magazine div").each(function (){
-					const bg=$(this).css("background-image").replace(/url\(["']?(.*?)["']?\)/, '$1');
+					const bg=$(this).data("bg");
 					const img=new Image();
 					img.src=bg;
 					img.onload=function (){
 						loaded++;
+						let percentage=(loaded/images)*100;
+						$("#progress-bar").prop("value", percentage);
+						$("#progress-label").text(Math.round(percentage)+"%");
+						$("#loading-log").text("Loaded "+loaded+" of "+images);
 						if (loaded==images){
 							$("#loading-screen").fadeOut();
 						}
