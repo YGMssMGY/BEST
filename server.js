@@ -5,7 +5,7 @@ let fs=require("fs/promises");
 let path=require("path");
 let port=process.env.PORT_NUMBER;
 let imagesDir=path.join(__dirname, "images");
-let pdfPath=path.join(__dirname, "BEST_Magazine_Mockup.pdf");
+let pdfPath=path.join(__dirname, "/magazines/BEST_Magazine_Mockup.pdf");
 async function ensureImagesDir(){
     try{
         await fs.access(imagesDir);
