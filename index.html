@@ -1,47 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View All Magazines</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-</head>
-<body>
-    <header>
-        <div id="bestofbasis">Best of Basis Magazines</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="submission.html">Submit Magazine</a></li>
-            </ul>
-        </nav>
-        <input type="text" id="search-bar" placeholder="Search magazines...">
-    </header>
-    <main>
-        <div class="magazine-box">
-            <a href="magazine_viewing.html">
-                <img src="covers/01.jpg" alt="Magazine Cover 1">
-                <div class="magazine-info">
-                    <h2>Best of Basis Magazine Example</h2>
-                    <p>First Edition</p>
-                </div>
-            </a>
-        </div>
-    </main>
-    <script src="turn.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var magazine = document.querySelector(".magazine");
-            if (magazine) {
-                $(magazine).turn({
-                    width: 800,
-                    height: 600,
-                    autoCenter: true
-                });
-            }
-        });
-    </script>
-</body>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>View All Magazines</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <div id="bestofbasis">Best of Basis Magazines</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="submission.html">Submit Magazine</a></li>
+                </ul>
+            </nav>
+            <input type="text" id="search-bar" placeholder="Search magazines...">
+        </header>
+        <main>
+            <div class="magazine-box">
+                <a href="magazine_one.html">
+                    <img src="covers/01.jpg" alt="Magazine Cover 1">
+                    <div class="magazine-info">
+                        <h2>Best of Basis Magazine Example</h2>
+                        <p>First Edition</p>
+                    </div>
+                </a>
+            </div>
+        </main>
+        <script src="turn.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                var magazine=document.querySelector(".magazine");
+                if (magazine){
+                    $(magazine).turn({
+                        width: 800,
+                        height: 600,
+                        autoCenter: true
+                    });
+                }
+            });
+        </script>
+    </body>
 </html>
