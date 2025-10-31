@@ -13,7 +13,7 @@
 				font-family: "Noto Sans SC";
 				src: url("NotoSansSC-VariableFont_wght.ttf");
 			}
-			input,textarea{
+			input, textarea{
 				font-family: "Noto Sans SC";
 			}
 			:root{
@@ -47,8 +47,9 @@
 			}
 			#magazine .turn-page{
 				background-color: #CCC;
-				background-size: cover;
-				background-position: center;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center center;
 			}
 			.nav-btn{
 				position: absolute;
@@ -69,19 +70,19 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				&:focus{
-					outline: .30rem solid #3255A4;
-				}
+			}
+			.nav-btn:focus{
+				outline: .30rem solid #3255A4;
 			}
 			.nav-btn:hover{
 				background-color: #000;
 				transform: translateY(-50%) scale(1.1);
 			}
 			#prevBtn{
-				left: calc(-1*var(--button-size));
+				left: calc(-1 * var(--button-size));
 			}
 			#nextBtn{
-				right: calc(-1*var(--button-size));
+				right: calc(-1 * var(--button-size));
 			}
 			#loading-screen{
 				display: flex;
@@ -155,6 +156,46 @@
 				#magazine .turn-page{
 					background-size: contain;
 					background-repeat: no-repeat;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 1112px){
+				:root{
+					--container-width: 90vw;
+					--container-height: 85vh;
+					--button-size: 4rem;
+				}
+				body{
+					font-size: clamp(1rem, 1.8vw, 1.2rem);
+				}
+				.nav-btn{
+					font-size: 3rem;
+					padding: 1rem;
+				}
+			}
+			@media (min-width: 1112px) and (max-width: 1366px){
+				:root{
+					--container-width: 85vw;
+					--container-height: 90vh;
+					--button-size: 5rem;
+				}
+				body{
+					font-size: clamp(1rem, 1.6vw, 1.25rem);
+				}
+			}
+			@media (max-width: 430px){
+				:root{
+					--container-width: 100vw;
+					--container-height: 75vh;
+					--button-size: 3rem;
+				}
+				body{
+					font-size: clamp(0.85rem, 4vw, 1rem);
+				}
+				.nav-btn{
+					font-size: 2rem;
+					min-width: 3rem;
+					min-height: 3rem;
+					padding: 0.4rem;
 				}
 			}
 			@media (hover: none){
@@ -267,7 +308,8 @@
 					};
 				});
 				function updateDisplayMode(){
-					let displayMode=$(window).width()<768?"single":"double";
+					let isPortrait=window.matchMedia("(orientation: portrait)").matches;
+					let displayMode=isPortrait?"single":"double";
 					$("#magazine").turn("display", displayMode);
 				}
 				$("#magazine").turn({
@@ -290,7 +332,9 @@
 						$("#magazine").turn("next");
 					}
 				});
-				$(window).on("resize", updateDisplayMode);
+				$(window).on("resize orientationchange", updateDisplayMode);
+				window.matchMedia("(orientation: portrait)").addEventListener("change", updateDisplayMode);
+				updateDisplayMode();
 				let startX, endX;
 				$("#magazine").on("touchstart", function (e){
 					startX=e.originalEvent.touches[0].clientX;
