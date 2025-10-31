@@ -1,4 +1,4 @@
-/* Use "cleancss -O2 -O1 -O0 -o style.css style.full.css" to compress */
+/* Use "cleancss -O2 -O1 -O0 -o magazine.min.css magazine.css" to compress */
 @font-face {
     font-family: "Noto Sans SC";
     src: url("NotoSansSC-VariableFont_wght.ttf");
@@ -52,14 +52,13 @@ body {
 .nav-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #3255A4;
     border: none;
     color: #FFF;
-    padding: clamp(0.5rem, 2vw, 1.5rem);
-    font-size: clamp(2rem, 6vw, 5rem);
+    padding: clamp(0.3rem, 1.5vw, 1rem);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     cursor: pointer;
-    border-radius: 0.45rem;
+    border-radius: 50%;
     z-index: 10;
     transition: background 0.3s, transform 0.2s;
     pointer-events: auto;
@@ -76,7 +75,7 @@ body {
 
 .nav-btn:hover {
     background-color: #000;
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
 }
 
 #prevBtn {
@@ -227,11 +226,10 @@ body {
 
 @media (hover: none) {
     .nav-btn {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: #3255A4;
     }
 
     .nav-btn:hover {
-        transform: translateY(-5%);
         background-color: rgba(0, 0, 0, 0.9);
         animation: flipBack 0.5s forwards 0.5s;
     }
