@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Magazine</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div id="bestofbasis">Best of Basis Magazines</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="submission.html">Submit Magazine</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Submit Your Magazine</h1>
+            <form action="submit_magazine.php" method="post" enctype="multipart/form-data">
+                <label for="title">Magazine Title:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="series">Series:</label>
+                <input type="text" id="series" name="series" required>
+                <label for="cover">Cover Image:</label>
+                <input type="file" id="cover" name="cover" accept="image/*" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
