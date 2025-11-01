@@ -1,12 +1,12 @@
 /* Use "cleancss -O2 -O1 -O0 -o magazine.min.css magazine.css" to compress */
 @font-face {
-    font-family: "Noto Sans SC";
-    src: url("NotoSansSC-VariableFont_wght.ttf");
+    font-family: "Noto Sans";
+    src: url("NotoSans-VariableFont_wdth\,wght.ttf");
 }
 
 input,
 textarea {
-    font-family: "Noto Sans SC";
+    font-family: "Noto Sans";
 }
 
 :root {
@@ -17,7 +17,7 @@ textarea {
 }
 
 body {
-    font-family: "Noto Sans SC";
+    font-family: "Noto Sans";
     background: #CCC;
     display: flex;
     flex-direction: column;
