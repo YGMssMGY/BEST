@@ -1,12 +1,12 @@
 /* Use "cleancss -O2 -O1 -O0 -o magazine.min.css magazine.css" to compress */
 @font-face {
-    font-family: "Noto Sans";
-    src: url("NotoSans-VariableFont_wdth\,wght.ttf");
+    font-family: "Noto Sans SC";
+    src: url("NotoSansSC-VariableFont_wght.ttf");
 }
 
 input,
 textarea {
-    font-family: "Noto Sans";
+    font-family: "Noto Sans SC";
 }
 
 :root {
@@ -17,7 +17,7 @@ textarea {
 }
 
 body {
-    font-family: "Noto Sans";
+    font-family: "Noto Sans SC";
     background: #CCC;
     display: flex;
     flex-direction: column;
@@ -79,11 +79,11 @@ body {
 }
 
 #prevBtn {
-    left: calc(-1 * var(--button-size));
+    left: calc(-1.25 * var(--button-size));
 }
 
 #nextBtn {
-    right: calc(-1 * var(--button-size));
+    right: calc(-1.25 * var(--button-size));
 }
 
 #loading-screen {
@@ -163,11 +163,11 @@ body {
     }
 
     #prevBtn {
-        left: 1rem;
+        left: 1.25rem;
     }
 
     #nextBtn {
-        right: 1rem;
+        right: 1.25rem;
     }
 
     #magazine .turn-page {
@@ -188,8 +188,16 @@ body {
     }
 
     .nav-btn {
-        font-size: 3rem;
+        font-size: 2rem;
         padding: 1rem;
+    }
+    
+    #prevBtn {
+        left: calc(-0.9 * var(--button-size));
+    }
+
+    #nextBtn {
+        right: calc(-0.9 * var(--button-size));
     }
 }
 
@@ -221,6 +229,14 @@ body {
         min-width: 3rem;
         min-height: 3rem;
         padding: 0.4rem;
+    }
+    
+    #prevBtn {
+        left: 1.75rem;
+    }
+
+    #nextBtn {
+        right: 1.75rem;
     }
 }
 
