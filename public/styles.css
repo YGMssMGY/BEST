@@ -1,101 +1,196 @@
 /* Use "cleancss -O2 -O1 -O0 -o styles.min.css styles.css" to compress */
 @font-face{
     font-family: "Noto Sans";
-    src: url("NotoSans-VariableFont_wdth\,wght.ttf");
+    src: url("NotoSans-VariableFont_wdth_wght.ttf") format("truetype");
+    font-display: swap;
 }
-input, textarea{
-    font-family: "Noto Sans";
-    border: 2px solid #000;
-    border-radius: .45rem;
-    padding: .2rem;
+:root{
+    --blue: #32A5E4;
+    --blue-dark: #3255A4;
+    --text: #000;
+    --bg: #F6F8FA;
+    --white: #FFF;
+    --shadow: 0 4px 10px rgba(0, 0, 0, .1);
+    --radius: .5rem;
+    --transition: .3s ease;
+}
+*{
+    box-sizing: border-box;
 }
 body{
-    font-family: "Noto Sans";
+    font-family: "Noto Sans", sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #F0F0F0;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
 }
 header{
-    background-color: #3255A4;
-    color: #FFF;
-    padding: 5px 0;
     position: fixed;
     top: 0;
-    width: 100%;
-    z-index: 500;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: var(--blue-dark);
+    color: var(--white);
+    padding: 1rem 0 .75rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
+    z-index: 10;
+}
+#bestofbasis{
+    font-weight: 800;
+    font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin: 0;
 }
 nav ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: .75rem 0 0;
+    padding: 0;
+    list-style: none;
 }
-nav ul li{
-    margin: 0 15px;
-    border: 1px solid #000;
-    padding: .2rem;
-    border-radius: .50rem;
-    background-color: #FFF;
+nav li{
+    border: 2px solid rgba(255, 255, 255, .8);
+    border-radius: 50px;
+    padding: .4rem 1.1rem;
+    background: rgba(255, 255, 255, .12);
+    backdrop-filter: blur(8px);
+    transition: var(--transition);
 }
-nav ul li a{
-    color: #FFF;
+nav li:hover{
+    background: var(--white);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+nav a{
     text-decoration: none;
-    font-size: 1rem;
-    color: #3255A4;
+    color: var(--white);
+    font-weight: 600;
+    transition: var(--transition);
 }
-#search-bar{
-    display: block;
-    margin: 5px auto;
-    padding: 5px;
-    width: 80%;
-    max-width: 33.3rem;
-    font-size: 1rem;
+nav li:hover a{
+    color: var(--blue);
 }
 main{
-    margin-top: 15rem;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 150px;
+    padding: 2rem;
+    max-width: 1100px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+main section{
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    grid-column: 1 / -1;
+    animation: fadeIn .6s ease;
+}
+main section h1{
+    color: var(--blue-dark);
+    font-size: clamp(2rem, 3vw, 2.4rem);
+    margin-top: 0;
+}
+main section h2{
+    color: var(--blue-dark);
+    border-bottom: 2px solid var(--blue-dark);
+    padding-bottom: .3rem;
+    margin-bottom: 1rem;
+}
+main section ul{
+    padding-left: 1.5rem;
+}
+main section li{
+    background: #F9FAFB;
+    padding: .5rem .75rem;
+    border-radius: .3rem;
+    margin-bottom: .4rem;
 }
 .magazine-box{
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 1.5rem;
-    overflow: hidden;
-    width: 200px;
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-color: #FFF;
+    overflow: hidden;
+    transition: var(--transition);
+    position: relative;
 }
-a{
-    color: #3255A4;
-    text-decoration: none;
+.magazine-box::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
 }
 .magazine-box:hover{
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .15);
 }
 .magazine-box img{
     width: 100%;
-    height: auto;
+    aspect-ratio: 1 / 1.2;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+.magazine-box:hover img{
+    transform: scale(1.05);
 }
 .magazine-info{
-    padding: 10px;
+    padding: 1.25rem;
 }
 .magazine-info h2{
-    font-size: 18px;
-    margin: 10px 0 5px;
+    color: var(--blue-dark);
+    font-size: 1.25rem;
+    margin: 0 0 .5rem;
 }
 .magazine-info p{
-    font-size: 14px;
+    color: var(--blue-dark);
+    font-size: .95rem;
+    margin: 0;
 }
-#bestofbasis{
-    font-family: "Noto Sans";
-    margin: auto;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    font-style: oblique;
+a{
+    color: var(--blue);
+    transition: var(--transition);
+}
+a:hover :not(.magazine-box a){
+    color: var(--blue-dark);
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media (max-width: 768px){
+    main{
+        gap: 1.5rem;
+        padding: 1.5rem;
+        margin-top: 130px;
+    }
+    nav li{
+        padding: .35rem 1rem;
+    }
+}
+@media (max-width: 480px){
+    main{
+        padding: 1rem;
+        grid-template-columns: 1fr;
+        margin-top: 120px;
+    }
+    main section{
+        padding: 1.25rem;
+    }
+    nav li{
+        font-size: .9rem;
+        padding: .25rem .9rem;
+    }
 }

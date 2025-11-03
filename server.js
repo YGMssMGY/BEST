@@ -1,54 +1,71 @@
-require("dotenv").config({path: ".env.local"});
-let fastify=require("fastify")({logger: false});
-let {fromPath}=require("pdf2pic");
-let fs=require("fs/promises");
 let path=require("path");
-let port=process.env.PORT_NUMBER;
+let fastify=require("fastify")({logger: false});
+let PORT=1331;
 let publicDir=path.join(__dirname, "public");
-let imagesDir=path.join(publicDir, "images");
-let pdfPath=path.join(publicDir, "magazines/BEST_Magazine_Mockup.pdf");
-async function ensurePublicDir(){
-    await fs.mkdir(publicDir,{ recursive: true });
-}
 fastify.register(require("@fastify/static"),{
     root: publicDir,
     prefix: "/",
-    maxAge: 0
+    setHeaders: (res, filePath)=>{
+        let ext=path.extname(filePath).toLowerCase();
+        if ([".html", ".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg"].includes(ext)){
+            res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+            res.setHeader("Pragma", "no-cache");
+            res.setHeader("Expires", "0");
+        }
+        else if ([".woff", ".woff2", ".ttf", ".otf", ".eot"].includes(ext)){
+            res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        }
+    },
+    cacheControl: false,
+    maxAge: 0,
+    immutable: false
 });
-fastify.get("/pdf", (request, reply)=>{
-    return reply.sendFile("magazines/BEST_Magazine_Mockup.pdf", publicDir);
-});
-fastify.get("/pdf-to-img", async (request, reply)=>{
-    reply.type("text/event-stream").header("Cache-Control", "no-cache").header("Connection", "keep-alive");
+fastify.addHook("onSend", async (request, reply, payload)=>{
     try{
-        await fs.rm(imagesDir,{recursive: true, force: true});
-        await fs.mkdir(imagesDir,{recursive: true});
-        let converter=fromPath(pdfPath,{
-            density: 300,
-            savePath: imagesDir,
-            format: "png",
-            width: 800,
-            concurrency: 4
-        });
-        let {pages: totalPages}=await converter.info();
-        reply.send(`event: totalpages\ndata: ${totalPages}\n\n`);
-        await converter.bulk(-1);
-        reply.send(`event: generatedpages\ndata: ${totalPages}\n\n`);
+        let contentType=String(reply.getHeader("content-type")||reply.getHeader("Content-Type")||"");
+        if (!/text\/html/i.test(contentType)){
+            return payload;
+        }
+        let inject=`<link rel="preload" href="/NotoSans-VariableFont_wdth_wght.ttf" as="font" type="font/ttf" crossorigin>`;
+        if (Buffer.isBuffer(payload)){
+            let str=payload.toString("utf8");
+            if (/<\/head>/i.test(str)){
+                str=str.replace(/<\/head>/i, `${inject}\n</head>`);
+                return Buffer.from(str, "utf8");
+            }
+            else{
+                return payload;
+            }
+        }
+        if (typeof payload=="string"){
+            if (/<\/head>/i.test(payload)){
+                return payload.replace(/<\/head>/i, `${inject}\n</head>`);
+            }
+            return payload;
+        }
+        request.log.debug({msg: "onSend: payload not modified (not string/buffer)", type: typeof payload});
+        return payload;
     }
-    catch (error){
-        console.error("PDF Processing Error:", error);
-        reply.send(`event: error\ndata: ${error.message}\n\n`);
-    }
-    finally{
-        reply.send("\n");
+    catch (err){
+        request.log.error({msg: "onSend injection failed", error: err});
+        return payload;
     }
 });
-async function start(){
-    await ensurePublicDir();
-    let address=await fastify.listen({ port, host: "::" });
-    console.log(`Server running on http://localhost:${port}`);
-}
-start().catch(err=>{
-    console.error("Server startup error:", err);
-    process.exit(1);
+fastify.setNotFoundHandler((request, reply)=>{
+    reply.code(404).type("text/plain").send("404 Not Found");
 });
+fastify.setErrorHandler((error, request, reply)=>{
+    request.log.error(error);
+    reply.code(500).type("text/plain").send(`Server error: ${error.message}`);
+});
+let start=async()=>{
+    try{
+        await fastify.listen({port: PORT, host: "::"});
+        console.log(`Server running at http://localhost:${PORT}`);
+    }
+    catch (err){
+        console.error("Failed to start server:", err);
+        process.exit(1);
+    }
+};
+start();
