@@ -7,7 +7,7 @@
 
 :root {
     --base-unit: 0.9rem;
-    --button-size: 6.5rem;
+    --button-size: 5.5rem;
     --container-width: 80vw;
     --container-height: 100vh;
     --primary-color: #3255A4;
@@ -155,7 +155,7 @@ body {
 @media (max-width: 768px) {
     :root {
         --base-unit: 0.8rem;
-        --button-size: 2.5rem;
+        --button-size: 2rem;
         --container-width: 95vw;
         --container-height: 70vh;
     }
@@ -166,18 +166,18 @@ body {
         top: auto;
         transform: none;
         font-size: 2rem;
-        padding: 0.5rem;
+        padding: 0.25rem;
         min-width: 3rem;
         min-height: 3rem;
         z-index: 2000;
     }
 
     #prevBtn {
-        left: 1.25rem;
+        left: 0.75rem;
     }
 
     #nextBtn {
-        right: 1.25rem;
+        right: 0.75rem;
     }
 
     #magazine .turn-page {
@@ -190,7 +190,7 @@ body {
     :root {
         --container-width: 90vw;
         --container-height: 85vh;
-        --button-size: 4rem;
+        --button-size: 3rem;
     }
 
     body {
@@ -199,7 +199,7 @@ body {
 
     .nav-btn {
         font-size: 2rem;
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     #prevBtn {
@@ -215,7 +215,7 @@ body {
     :root {
         --container-width: 85vw;
         --container-height: 90vh;
-        --button-size: 5rem;
+        --button-size: 3.5rem;
     }
 
     body {
@@ -227,7 +227,7 @@ body {
     :root {
         --container-width: 100vw;
         --container-height: 75vh;
-        --button-size: 3rem;
+        --button-size: 2rem;
     }
 
     body {
@@ -238,7 +238,7 @@ body {
         font-size: 2rem;
         min-width: 3rem;
         min-height: 3rem;
-        padding: 0.4rem;
+        padding: 0.3rem;
     }
 
     #prevBtn {
