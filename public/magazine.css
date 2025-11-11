@@ -56,7 +56,7 @@ body {
 
 #magazine .turn-page {
     background-color: var(--page-bg);
-    background-size: contain !important;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     border: none !important;
