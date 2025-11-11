@@ -56,7 +56,7 @@ body {
 
 #magazine .turn-page {
     background-color: var(--page-bg);
-    background-size: cover;
+    background-size: contain !important;
     background-repeat: no-repeat;
     background-position: center center;
     border: none !important;
@@ -67,30 +67,25 @@ body {
 .nav-btn {
     position: absolute;
     top: 50%;
+    transform: translateY(-50%);
     background-color: var(--primary-color);
     border: none;
     color: var(--white);
-    padding: clamp(0.3rem, 1.5vw, 1rem);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
     cursor: pointer;
     border-radius: 50%;
     z-index: 10;
     transition: background 0.3s, transform 0.2s;
     pointer-events: auto;
-    min-width: var(--button-size);
-    min-height: var(--button-size);
     display: flex;
     align-items: center;
     justify-content: center;
+    width: var(--button-size);
+    height: var(--button-size);
+    font-size: 2rem;
 }
 
 .nav-btn:focus {
     outline: .30rem solid var(--primary-color);
-}
-
-.nav-btn:hover {
-    background-color: var(--black);
-    transform: scale(1.1);
 }
 
 #prevBtn {
@@ -252,27 +247,5 @@ body {
 
     #nextBtn {
         right: 1.75rem;
-    }
-}
-
-@media (hover: none) {
-    .nav-btn {
-        background-color: var(--primary-color);
-    }
-
-    .nav-btn:hover {
-        background-color: rgba(0, 0, 0, 0.9);
-        animation: flipBack 0.5s forwards 0.5s;
-    }
-
-    @keyframes flipBack {
-        0% {
-            transform: translateY(-5%);
-        }
-
-        100% {
-            transform: translateY(0);
-            background-color: rgba(0, 0, 0, 0.5);
-        }
     }
 }
