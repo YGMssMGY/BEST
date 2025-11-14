@@ -44,6 +44,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let displayMode = isPortrait ? "single" : "double";
         $("#magazine").turn("display", displayMode);
     }
+    function resizeMagazine() {
+        const container = document.getElementById("mag-container");
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        $("#magazine").turn("size", w, h);
+        updateDisplayMode();
+    }
     $("#magazine").turn({
         display: $(window).width() < 768 ? "single" : "double",
         acceleration: true,
@@ -64,9 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#magazine").turn("next");
         }
     });
-    $(window).on("resize orientationchange", updateDisplayMode);
-    window.matchMedia("(orientation: portrait)").addEventListener("change", updateDisplayMode);
-    updateDisplayMode();
+    resizeMagazine();
+    window.addEventListener("resize", resizeMagazine);
+    window.addEventListener("orientationchange", () => {
+        setTimeout(resizeMagazine, 300);
+    });
+    window.matchMedia("(orientation: portrait)").addEventListener("change", resizeMagazine);
     let startX, endX;
     $("#magazine").on("touchstart", function (e) {
         startX = e.originalEvent.touches[0].clientX;
