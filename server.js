@@ -5,7 +5,7 @@ import fastifyStatic from "@fastify/static";
 let __filename=fileURLToPath(import.meta.url);
 let __dirname=path.dirname(__filename);
 let PORT=1331;
-let publicDir=path.join(__dirname, "public");
+let publicDir=path.join(__dirname, "dist");
 let fastify=Fastify({logger: false});
 await fastify.register(fastifyStatic,{
     root: publicDir,

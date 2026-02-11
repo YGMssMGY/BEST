@@ -134,8 +134,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# Various assets related to specific magazine content
-covers
-magazines
-pages

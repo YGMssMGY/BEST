@@ -1,7 +1,7 @@
 /* Use "cleancss -O2 -O1 -O0 -o styles.min.css styles.css" to compress */
 @font-face{
     font-family: "Noto Sans";
-    src: url("NotoSans-VariableFont_wdth_wght.ttf") format("truetype");
+    src: url("/NotoSans-VariableFont_wdth_wght.ttf") format("truetype");
     font-display: swap;
 }
 :root{
