@@ -1,96 +1,82 @@
-//Use "terser magazine.js -o magazine.min.js --compress --mangle" to compress
 document.addEventListener("DOMContentLoaded", function () {
-    $("#magazine div").each(function () {
-        const bg = $(this).data("bg");
-        $(this).css("background-image", "url(" + bg + ")");
-    });
-    let images = $("#magazine div").length;
+    const PAGE_RATIO = 2482 / 3544;
+    const magazine = $("#magazine");
+    const container = document.getElementById("mag-container");
+    const pages = $("#magazine div");
     let loaded = 0;
-    fetch("https://ipv4.icanhazip.com")
-        .then(response => response.text())
-        .then(data => {
-            let ipv4 = data.trim();
-            $("#ipv4-label").text(`IPv4: ${ipv4}`);
-        })
-        .catch(() => {
-            $("#ipv4-label").text(`IPv4: Not available`);
-        })
-    fetch("https://ipv6.icanhazip.com")
-        .then(response => response.text())
-        .then(data => {
-            let ipv6 = data.trim();
-            $("#ipv6-label").text(`IPv6: ${ipv6}`);
-        })
-        .catch(() => {
-            $("#ipv6-label").text(`IPv6: Not available`);
-        })
-    $("#magazine div").each(function () {
+    pages.each(function () {
         const bg = $(this).data("bg");
         const img = new Image();
         img.src = bg;
-        img.onload = function () {
+        img.onload = () => {
             loaded++;
-            let percentage = (loaded / images) * 100;
+            $(this).css("background-image", `url(${bg})`);
+            const percentage = (loaded / pages.length) * 100;
             $("#progress-bar").prop("value", percentage);
             $("#progress-label").text(Math.round(percentage) + "%");
-            $("#loading-log").text("Loaded " + loaded + " of " + images);
-            if (loaded == images) {
-                $("#loading-screen").fadeOut();
-            }
+            $("#loading-log").text(`Loaded ${loaded} of ${pages.length}`);
+            if (loaded === pages.length) $("#loading-screen").fadeOut();
         };
     });
-    function updateDisplayMode() {
-        let isPortrait = window.matchMedia("(orientation: portrait)").matches;
-        let displayMode = isPortrait ? "single" : "double";
-        $("#magazine").turn("display", displayMode);
-    }
-    function resizeMagazine() {
-        const container = document.getElementById("mag-container");
-        const w = container.clientWidth;
-        const h = container.clientHeight;
-        $("#magazine").turn("size", w, h);
-        updateDisplayMode();
-    }
-    $("#magazine").turn({
-        display: $(window).width() < 768 ? "single" : "double",
+
+    magazine.turn({
+        display: "single",
         acceleration: true,
         gradients: !$.isTouch,
         elevation: 50
     });
-    $("#prevBtn").click(function () {
-        $("#magazine").turn("previous");
-    });
-    $("#nextBtn").click(function () {
-        $("#magazine").turn("next");
-    });
-    $(window).on("keydown", function (e) {
-        if (e.keyCode == 37) {
-            $("#magazine").turn("previous");
+
+    function resizeMagazine() {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+        const displayMode = isPortrait ? "single" : "double";
+
+        magazine.turn("display", displayMode);
+
+        let pageCount = displayMode === "double" ? 2 : 1;
+        let width = w;
+        let height = width / (PAGE_RATIO * pageCount);
+
+        if (height > h) {
+            height = h;
+            width = height * PAGE_RATIO * pageCount;
         }
-        else if (e.keyCode == 39) {
-            $("#magazine").turn("next");
-        }
+
+        magazine.turn("size", Math.floor(width), Math.floor(height));
+    }
+
+    $("#prevBtn").click(() => magazine.turn("previous"));
+    $("#nextBtn").click(() => magazine.turn("next"));
+
+    $(window).on("keydown", e => {
+        if (e.key === "ArrowLeft") magazine.turn("previous");
+        if (e.key === "ArrowRight") magazine.turn("next");
     });
-    resizeMagazine();
+
+    let startX = 0, endX = 0;
+    magazine.on("touchstart", e => startX = e.originalEvent.touches[0].clientX);
+    magazine.on("touchmove", e => endX = e.originalEvent.touches[0].clientX);
+    magazine.on("touchend", () => {
+        const threshold = 50;
+        if (startX - endX > threshold) magazine.turn("next");
+        else if (endX - startX > threshold) magazine.turn("previous");
+    });
+
     window.addEventListener("resize", resizeMagazine);
-    window.addEventListener("orientationchange", () => {
-        setTimeout(resizeMagazine, 300);
-    });
-    window.matchMedia("(orientation: portrait)").addEventListener("change", resizeMagazine);
-    let startX, endX;
-    $("#magazine").on("touchstart", function (e) {
-        startX = e.originalEvent.touches[0].clientX;
-    });
-    $("#magazine").on("touchmove", function (e) {
-        endX = e.originalEvent.touches[0].clientX;
-    });
-    $("#magazine").on("touchend", function () {
-        let threshold = 50;
-        if (startX - endX > threshold) {
-            $("#magazine").turn("next");
-        }
-        else if (endX - startX > threshold) {
-            $("#magazine").turn("previous");
-        }
-    });
+    window.addEventListener("orientationchange", () => setTimeout(resizeMagazine, 200));
+
+    resizeMagazine();
+    
+    let hideTimeout;
+    function showButtons() {
+        clearTimeout(hideTimeout);
+        $("#mag-container").addClass("touch-active");
+        hideTimeout = setTimeout(() => {
+            $("#mag-container").removeClass("touch-active");
+        }, 2000);
+    }
+
+    $("#mag-container").on("mousemove", showButtons);
+    $("#mag-container").on("touchstart", showButtons);
 });

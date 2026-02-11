@@ -1,8 +1,13 @@
-let path=require("path");
-let fastify=require("fastify")({logger: false});
+import path from "path";
+import {fileURLToPath} from "url";
+import Fastify from "fastify";
+import fastifyStatic from "@fastify/static";
+let __filename=fileURLToPath(import.meta.url);
+let __dirname=path.dirname(__filename);
 let PORT=1331;
 let publicDir=path.join(__dirname, "public");
-fastify.register(require("@fastify/static"),{
+let fastify=Fastify({logger: false});
+await fastify.register(fastifyStatic,{
     root: publicDir,
     prefix: "/",
     setHeaders: (res, filePath)=>{
@@ -26,7 +31,7 @@ fastify.addHook("onSend", async (request, reply, payload)=>{
         if (!/text\/html/i.test(contentType)){
             return payload;
         }
-        let inject=`<link rel="preload" href="/NotoSans-VariableFont_wdth_wght.ttf" as="font" type="font/ttf" crossorigin>`;
+        let inject="<link rel=\"preload\" href=\"/NotoSans-VariableFont_wdth_wght.ttf\" as=\"font\" type=\"font/ttf\" crossorigin>";
         if (Buffer.isBuffer(payload)){
             let str=payload.toString("utf8");
             if (/<\/head>/i.test(str)){
