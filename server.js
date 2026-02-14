@@ -69,19 +69,19 @@ fastify.addHook("onSend", async (request, reply, payload) => {
 fastify.setNotFoundHandler(async (request, reply) => {
     const url = request.url
     // Skip API routes and file extensions (except .html)
-    if (url.includes('.') && !url.endsWith('.html')) {
+    if (url.includes(".") && !url.endsWith(".html")) {
         // Likely a static file that doesn't exist
         reply.code(404).type("text/plain").send("404 Not Found")
         return
     }
-    
+
     // For HTML routes, serve index.html (client-side routing will handle it)
     // In production with prerendering, this should only happen for non-prerendered dynamic routes
-    const indexPath = path.join(publicDir, 'index.html')
+    const indexPath = path.join(publicDir, "index.html")
     try {
         await fs.promises.access(indexPath, fs.constants.R_OK)
-        const html = await fs.promises.readFile(indexPath, 'utf8')
-        reply.type('text/html').send(html)
+        const html = await fs.promises.readFile(indexPath, "utf8")
+        reply.type("text/html").send(html)
     } catch (err) {
         reply.code(404).type("text/plain").send("404 Not Found - index.html not found")
     }

@@ -12,6 +12,9 @@ export function TurnJsFlipbook() {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
+        // Debug: add a marker to see if useEffect runs
+        window._turnJsDebug = "useEffect ran"
+
         // Load jQuery and turn.js if not already loaded
         const loadScripts = () => {
             return new Promise((resolve, reject) => {
@@ -115,8 +118,16 @@ export function TurnJsFlipbook() {
             }
         }
 
-        initializeFlipbook().then(() => {
-            // Flipbook initialized
+        initializeFlipbook().catch(err => {
+            console.error("Failed to initialize flipbook:", err)
+            // Re-throw to make error visible
+            setTimeout(() => {
+                throw err
+            }, 0)
+            // Still hide loading after a delay
+            setTimeout(() => {
+                setIsLoading(false)
+            }, 3000)
         })
 
         // Cleanup function
@@ -133,8 +144,21 @@ export function TurnJsFlipbook() {
 
     // Check if all images are loaded
     useEffect(() => {
+        console.log(`[TurnJsFlipbook] loadedCount: ${loadedCount}, totalPages: ${totalPages}`)
         if (loadedCount === totalPages && totalPages > 0) {
+            console.log("[TurnJsFlipbook] All images loaded, hiding loading screen")
             setIsLoading(false)
+        }
+
+        // Safety timeout: hide loading after 10 seconds max
+        const timeoutId = setTimeout(() => {
+            console.log("[TurnJsFlipbook] Safety timeout reached, hiding loading screen")
+            setIsLoading(false)
+        }, 10000)
+
+        return () => {
+            console.log("[TurnJsFlipbook] Cleaning up timeout")
+            clearTimeout(timeoutId)
         }
     }, [loadedCount, totalPages])
 

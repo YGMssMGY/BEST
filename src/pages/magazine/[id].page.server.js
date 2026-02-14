@@ -3,13 +3,13 @@
 // 1. Return specific URLs to pre-render
 // 2. Return an empty array to skip pre-rendering for this route
 export const prerender = async () => {
-  // Pre-render specific magazine IDs
-  return [
-    {
-      url: '/magazine/best',
-      pageContext: {
-        routeParams: { id: 'best' }
-      }
-    }
-  ]
+    // Pre-render specific magazine IDs
+    return [
+        {
+            url: "/magazine/best",
+            pageContext: {
+                routeParams: { id: "best" }
+            }
+        }
+    ]
 }
