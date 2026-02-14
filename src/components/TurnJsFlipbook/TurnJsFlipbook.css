@@ -1,0 +1,63 @@
+/* Import existing magazine styles */
+@import "../../magazine.css";
+
+/* Additional styles for React component if needed */
+.turnjs-flipbook {
+    width: 100%;
+    height: 100%;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1000;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+#progress-bar {
+    width: 300px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+#progress-label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+#loading-log {
+    font-size: 1rem;
+    color: #ccc;
+}

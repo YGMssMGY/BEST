@@ -1,0 +1,16 @@
+import React from "react"
+import { TurnJsFlipbook } from "../components/TurnJsFlipbook/TurnJsFlipbook"
+
+export function Page() {
+    return (
+        <div className="magazine-view-page">
+            <TurnJsFlipbook />
+        </div>
+    )
+}
+
+export const documentProps = {
+    title: "Best of Basis Magazine",
+    description:
+        "Explore the Best of Basis Magazine — a digital flipbook experience featuring top articles, visuals, and stories from BASIS students and creators."
+}

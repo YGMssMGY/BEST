@@ -5,7 +5,7 @@
 }
 
 :root {
-    --primary-color: #3255A4;
+    --primary-color: #3255a4;
     --white: #fff;
     --page-ratio: 2482 / 3544;
 }
@@ -94,9 +94,15 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg) rotateY(0deg); }
-    50% { transform: rotate(180deg) rotateY(180deg); }
-    100% { transform: rotate(360deg) rotateY(0deg); }
+    0% {
+        transform: rotate(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: rotate(180deg) rotateY(180deg);
+    }
+    100% {
+        transform: rotate(360deg) rotateY(0deg);
+    }
 }
 
 @media (max-width: 768px) {
@@ -107,8 +113,12 @@ body {
         height: 3rem;
         font-size: 2rem;
     }
-    #prevBtn { left: 1rem; }
-    #nextBtn { right: 1rem; }
+    #prevBtn {
+        left: 1rem;
+    }
+    #nextBtn {
+        right: 1rem;
+    }
 }
 
 #mag-container:hover .nav-btn,

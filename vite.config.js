@@ -1,6 +1,6 @@
-import {defineConfig} from "vite";
-import htmlMinifier from "vite-plugin-html-minifier";
-import {resolve} from "path";
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import ssr from "vite-plugin-ssr/plugin"
 
 export default defineConfig({
     root: ".",
@@ -12,13 +12,7 @@ export default defineConfig({
         sourcemap: false,
         minify: "terser",
         cssMinify: "esbuild",
-        rollupOptions: {
-            input: {
-                main: resolve(__dirname, 'index.html'),
-                about: resolve(__dirname, 'src/about.html'),
-                magazine: resolve(__dirname, 'src/magazine_one.html')
-            }
-        },
+        // Remove rollupOptions.input as vite-plugin-ssr handles routing
         terserOptions: {
             ecma: 2020,
             compress: {
@@ -28,39 +22,34 @@ export default defineConfig({
                 dead_code: true,
                 conditionals: true,
                 booleans: true,
-                unused: true,
+                unused: true
             },
             mangle: {
                 properties: {
-                    regex: /^_/,
-                },
+                    regex: /^_/
+                }
             },
             format: {
-                comments: false,
-            },
-        },
+                comments: false
+            }
+        }
     },
     plugins: [
-        htmlMinifier({
-            collapseWhitespace: true,
-            removeComments: true,
-            removeRedundantAttributes: true,
-            removeEmptyAttributes: true,
-            removeAttributeQuotes: true,
-            minifyCSS: true,
-            minifyJS: true,
-        }),
+        react(),
+        ssr({
+            prerender: true
+        })
     ],
     server: {
         port: 1331,
         open: false,
         strictPort: true,
-        host: true,
+        host: true
     },
     preview: {
         port: 1331,
         open: false,
         strictPort: true,
-        host: true,
-    },
-});
+        host: true
+    }
+})

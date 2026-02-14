@@ -1,85 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-			<meta name="apple-mobile-web-app-capable" content="yes">
-			<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-			<meta name="title" content="Best of Basis Magazine">
-			<meta name="description" content="Explore the Best of Basis Magazine — a digital flipbook experience featuring top articles, visuals, and stories from BASIS students and creators.">
-			<meta name="keywords" content="BASIS Magazine, student magazine, school publication, digital flipbook, education, creativity, Best of Basis">
-			<meta name="author" content="Best of Basis Editorial Team">
-			<meta name="robots" content="index, follow">
-			<meta name="theme-color" content="#FFFFFF">
-			<meta property="og:type" content="website">
-			<meta property="og:url" content="https://best.biszweb.club/magazine_one.html">
-			<meta property="og:title" content="Best of Basis Magazine">
-			<meta property="og:description" content="Flip through the Best of Basis Magazine — a curated collection of top stories and visuals.">
-			<meta property="og:image" content="https://best.biszweb.club/favicon.png">
-			<meta property="og:locale" content="en_US">
-			<meta name="twitter:card" content="summary_large_image">
-			<meta name="twitter:url" content="https://best.biszweb.club/magazine_one.html">
-			<meta name="twitter:title" content="Best of Basis Magazine">
-			<meta name="twitter:description" content="Flip through the Best of Basis Magazine — student creativity in digital form.">
-			<meta name="twitter:image" content="https://best.biszweb.club/favicon.png">
-			<meta name="msapplication-TileColor" content="#FFFFFF">
-			<meta name="msapplication-TileImage" content="https://best.biszweb.club/favicon.png">
-			<meta name="msapplication-config" content="browserconfig.xml">
-			<script src="/jquery-3.7.1.min.js"></script>
-			<script src="/turn.min.js"></script>
-			<link rel="shortcut icon" href="/favicon.png" type="image/png">
-			<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-			<link rel="mask-icon" href="/favicon.svg" color="#3255A4">
-			<link rel="preload" href="/NotoSansSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin>
-			<link rel="stylesheet" href="magazine.css">
-	</head>
-	<body>
-		<div id="loading-screen">
-			<div class="loader"></div>
-			<div class="loading-text">Loading...</div>
-			<progress id="progress-bar" value="0" max="100"></progress>
-			<p id="progress-label">0%</p>
-			<p id="loading-log"></p>
-			<p id="ipv4-label"></p>
-			<p id="ipv6-label"></p>
-		</div>
-		<div id="mag-container">
-			<button id="prevBtn" class="nav-btn">❮</button>
-			<div id="magazine">
-				<div data-bg="/pages/best/01.jpg"></div>
-				<div data-bg="/pages/best/02.jpg"></div>
-				<div data-bg="/pages/best/03.jpg"></div>
-				<div data-bg="/pages/best/04.jpg"></div>
-				<div data-bg="/pages/best/05.jpg"></div>
-				<div data-bg="/pages/best/06.jpg"></div>
-				<div data-bg="/pages/best/07.jpg"></div>
-				<div data-bg="/pages/best/08.jpg"></div>
-				<div data-bg="/pages/best/09.jpg"></div>
-				<div data-bg="/pages/best/10.jpg"></div>
-				<div data-bg="/pages/best/11.jpg"></div>
-				<div data-bg="/pages/best/12.jpg"></div>
-				<div data-bg="/pages/best/13.jpg"></div>
-				<div data-bg="/pages/best/14.jpg"></div>
-				<div data-bg="/pages/best/15.jpg"></div>
-				<div data-bg="/pages/best/16.jpg"></div>
-				<div data-bg="/pages/best/17.jpg"></div>
-				<div data-bg="/pages/best/18.jpg"></div>
-				<div data-bg="/pages/best/19.jpg"></div>
-				<div data-bg="/pages/best/20.jpg"></div>
-				<div data-bg="/pages/best/21.jpg"></div>
-				<div data-bg="/pages/best/22.jpg"></div>
-				<div data-bg="/pages/best/23.jpg"></div>
-				<div data-bg="/pages/best/24.jpg"></div>
-				<div data-bg="/pages/best/25.jpg"></div>
-				<div data-bg="/pages/best/26.jpg"></div>
-				<div data-bg="/pages/best/27.jpg"></div>
-				<div data-bg="/pages/best/28.jpg"></div>
-				<div data-bg="/pages/best/29.jpg"></div>
-				<div data-bg="/pages/best/30.jpg"></div>
-				<div data-bg="/pages/best/31.jpg"></div>
-			</div>
-			<button id="nextBtn" class="nav-btn">❯</button>
-		</div>
-		<script type="module" src="magazine.js" defer></script>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="title" content="Best of Basis Magazine" />
+        <meta
+            name="description"
+            content="Explore the Best of Basis Magazine — a digital flipbook experience featuring top articles, visuals, and stories from BASIS students and creators."
+        />
+        <meta
+            name="keywords"
+            content="BASIS Magazine, student magazine, school publication, digital flipbook, education, creativity, Best of Basis"
+        />
+        <meta name="author" content="Best of Basis Editorial Team" />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#FFFFFF" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://best.biszweb.club/magazine_one.html" />
+        <meta property="og:title" content="Best of Basis Magazine" />
+        <meta
+            property="og:description"
+            content="Flip through the Best of Basis Magazine — a curated collection of top stories and visuals."
+        />
+        <meta property="og:image" content="https://best.biszweb.club/favicon.png" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://best.biszweb.club/magazine_one.html" />
+        <meta name="twitter:title" content="Best of Basis Magazine" />
+        <meta
+            name="twitter:description"
+            content="Flip through the Best of Basis Magazine — student creativity in digital form."
+        />
+        <meta name="twitter:image" content="https://best.biszweb.club/favicon.png" />
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="https://best.biszweb.club/favicon.png" />
+        <meta name="msapplication-config" content="browserconfig.xml" />
+        <script src="/jquery-3.7.1.min.js"></script>
+        <script src="/turn.min.js"></script>
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="mask-icon" href="/favicon.svg" color="#3255A4" />
+        <link rel="preload" href="/NotoSansSC-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+        <link rel="stylesheet" href="magazine.css" />
+    </head>
+    <body>
+        <div id="loading-screen">
+            <div class="loader"></div>
+            <div class="loading-text">Loading...</div>
+            <progress id="progress-bar" value="0" max="100"></progress>
+            <p id="progress-label">0%</p>
+            <p id="loading-log"></p>
+            <p id="ipv4-label"></p>
+            <p id="ipv6-label"></p>
+        </div>
+        <div id="mag-container">
+            <button id="prevBtn" class="nav-btn">❮</button>
+            <div id="magazine">
+                <div data-bg="/pages/best/01.jpg"></div>
+                <div data-bg="/pages/best/02.jpg"></div>
+                <div data-bg="/pages/best/03.jpg"></div>
+                <div data-bg="/pages/best/04.jpg"></div>
+                <div data-bg="/pages/best/05.jpg"></div>
+                <div data-bg="/pages/best/06.jpg"></div>
+                <div data-bg="/pages/best/07.jpg"></div>
+                <div data-bg="/pages/best/08.jpg"></div>
+                <div data-bg="/pages/best/09.jpg"></div>
+                <div data-bg="/pages/best/10.jpg"></div>
+                <div data-bg="/pages/best/11.jpg"></div>
+                <div data-bg="/pages/best/12.jpg"></div>
+                <div data-bg="/pages/best/13.jpg"></div>
+                <div data-bg="/pages/best/14.jpg"></div>
+                <div data-bg="/pages/best/15.jpg"></div>
+                <div data-bg="/pages/best/16.jpg"></div>
+                <div data-bg="/pages/best/17.jpg"></div>
+                <div data-bg="/pages/best/18.jpg"></div>
+                <div data-bg="/pages/best/19.jpg"></div>
+                <div data-bg="/pages/best/20.jpg"></div>
+                <div data-bg="/pages/best/21.jpg"></div>
+                <div data-bg="/pages/best/22.jpg"></div>
+                <div data-bg="/pages/best/23.jpg"></div>
+                <div data-bg="/pages/best/24.jpg"></div>
+                <div data-bg="/pages/best/25.jpg"></div>
+                <div data-bg="/pages/best/26.jpg"></div>
+                <div data-bg="/pages/best/27.jpg"></div>
+                <div data-bg="/pages/best/28.jpg"></div>
+                <div data-bg="/pages/best/29.jpg"></div>
+                <div data-bg="/pages/best/30.jpg"></div>
+                <div data-bg="/pages/best/31.jpg"></div>
+            </div>
+            <button id="nextBtn" class="nav-btn">❯</button>
+        </div>
+        <script type="module" src="magazine.js" defer></script>
+    </body>
 </html>
